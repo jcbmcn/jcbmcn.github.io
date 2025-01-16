@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Jacob McNeilly</title>
+    <description>Jacob McNeilly&apos;s Blog. &lt;br&gt; A blog about programming, design, and other cool stuff.</description>
+    <link>http://0.0.0.0:4000/</link>
+    <atom:link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Thu, 16 Jan 2025 05:11:44 +0000</pubDate>
+    <lastBuildDate>Thu, 16 Jan 2025 05:11:44 +0000</lastBuildDate>
+    <generator>Jekyll v4.3.4</generator>
+    
+      <item>
+        <title>Hello World!</title>
+        <description>&lt;h1 id=&quot;hello-world&quot;&gt;Hello World!&lt;/h1&gt;
+</description>
+        <pubDate>Wed, 15 Jan 2025 19:43:38 +0000</pubDate>
+        <link>http://0.0.0.0:4000/2025/01/15/hello-world/</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/2025/01/15/hello-world/</guid>
+        
+        <category>World</category>
+        
+        <category>Hello</category>
+        
+        
+      </item>
+    
+  </channel>
+</rss>
