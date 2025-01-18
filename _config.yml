@@ -5,7 +5,7 @@ header-img: img/home-bg.jpg
 email: jacob.mcneilly15@gmail.com
 description: "Jacob McNeilly's Blog. <br> A blog about programming, design, and other cool stuff."
 keyword: "Jacob McNeilly, Jacob, McNeilly, blog, programming, design, cool stuff"
-url: "https:/jcbmcn.github.io" # your host, for absolute URL
+url: "https://www.jcbmcn.com" # your host, for absolute URL
 baseurl: "" # for example, '/blog' if your blog hosted on 'host/blog'
 
 # Publish posts or collection documents with a future date.
