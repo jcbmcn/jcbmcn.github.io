@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "Power Automate",
+      "subtitle" : "The Operational Credential Conundrum",
+      "tags"     : "",
+      "url"      : "/2025/02/13/power-automate/",
+      "date"     : "2025-02-13 00:00:00 +0000"
+    } ,
+  
+    {
       "title"    : "Hello World!",
       "subtitle" : " &quot;Hello World, Hello Blog&quot;",
       "tags"     : "World, Hello",

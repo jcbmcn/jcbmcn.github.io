@@ -5,9 +5,108 @@
     <description>Jacob McNeilly&apos;s Blog. &lt;br&gt; A blog about programming, design, and other cool stuff.</description>
     <link>http://0.0.0.0:4000/</link>
     <atom:link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 18 Jan 2025 23:07:43 +0000</pubDate>
-    <lastBuildDate>Sat, 18 Jan 2025 23:07:43 +0000</lastBuildDate>
+    <pubDate>Thu, 13 Feb 2025 05:12:47 +0000</pubDate>
+    <lastBuildDate>Thu, 13 Feb 2025 05:12:47 +0000</lastBuildDate>
     <generator>Jekyll v4.3.4</generator>
+    
+      <item>
+        <title>Power Automate</title>
+        <description>&lt;h1 id=&quot;the-problem&quot;&gt;The Problem&lt;/h1&gt;
+
+&lt;h2 id=&quot;pros&quot;&gt;Pros&lt;/h2&gt;
+
+&lt;p&gt;Power Automate (PA) is an incredibly powerful tool, yet it is often overlooked or underutilized in organizations. It enables automation of many manual tasks, such as:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Parsing webhooks and generating Microsoft Teams messages&lt;/li&gt;
+  &lt;li&gt;Sending and receiving API requests/responses&lt;/li&gt;
+  &lt;li&gt;Consolidating data from multiple Microsoft services for reporting and analysis&lt;/li&gt;
+  &lt;li&gt;Creating custom workflows that mimic Microsoft Teams app functionalities&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;cons&quot;&gt;Cons&lt;/h2&gt;
+
+&lt;p&gt;However, PA has notable drawbacks. Managing flows centrally—like one would with Infrastructure as Code (IaC)—is challenging. There’s no straightforward way to deploy flows to production, and sharing flows across teams is cumbersome.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-real-problem-credential-sharing&quot;&gt;The &lt;em&gt;Real&lt;/em&gt; Problem: Credential Sharing&lt;/h2&gt;
+
+&lt;p&gt;A critical issue with PA is credential management.&lt;/p&gt;
+
+&lt;p&gt;For example, Microsoft Teams previously supported webhook connectors, allowing third-party services to send data directly to Teams. However, in late 2024, Microsoft announced plans to deprecate these connectors, initially giving organizations only a few months to adapt. Following backlash, they postponed (but did not cancel) the deprecation.&lt;/p&gt;
+
+&lt;p&gt;With this change looming, I needed a way to maintain webhook functionality across multiple teams. Microsoft’s recommendation? Use Power Automate. Setting up a simple PA flow to receive webhook payloads and post messages to Teams was easy. Microsoft even provides countless pre-built templates for this purpose.&lt;/p&gt;
+
+&lt;p&gt;However, once I tested my flow, I noticed an issue—every message was posted under my name. This raised critical concerns:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;What would happen if I leave the organization?&lt;/li&gt;
+  &lt;li&gt;Would the flow stop working?&lt;/li&gt;
+  &lt;li&gt;How would a teammate gain access to these flows if my account was disabled?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;A failure in production alerting due to a deactivated account could lead to major outages.&lt;/p&gt;
+
+&lt;p&gt;Power Automate does offer a credential-sharing feature, which allows users to share flows along with their credentials. However, this presents a new set of risks:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;If shared, does the flow allow teammates to impersonate me?&lt;/li&gt;
+  &lt;li&gt;Is there some sort of audit tracking to prevent a rogue employee from abusing my credentials?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The idea that PA’s solution to this problem is sharing personal credentials felt fundamentally flawed—especially considering that the original Teams connectors were designed to be user-independent.&lt;/p&gt;
+
+&lt;p&gt;There must be a better way.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;The Core Issue: Workflows should not be tied to individual user credentials.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;the-solution&quot;&gt;The Solution&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;Service Accounts.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;cons-1&quot;&gt;Cons&lt;/h2&gt;
+
+&lt;p&gt;From a security standpoint, service accounts are not a perfect solution. They obscure which specific user performs an action, meaning that, in theory, a bad actor could misuse the account without a clear audit trail.&lt;/p&gt;
+
+&lt;p&gt;However, this is still preferable to tying critical workflows to a personal account. At least a service account prevents individual credential exposure and eliminates the risk of a flow breaking if a user leaves.&lt;/p&gt;
+
+&lt;h2 id=&quot;pros-1&quot;&gt;Pros&lt;/h2&gt;
+
+&lt;p&gt;By using service accounts, we:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Protect individual user credentials&lt;/li&gt;
+  &lt;li&gt;Ensure workflows continue functioning even when employees leave&lt;/li&gt;
+  &lt;li&gt;Reduce licensing costs for Power Automate&lt;/li&gt;
+  &lt;li&gt;Maintain control over permissions granted to the service account&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;the-implementation&quot;&gt;The Implementation&lt;/h1&gt;
+
+&lt;p&gt;You can still create and test flows using your personal account. However, before deploying them in a production environment, transition all workflows to use a service account.&lt;/p&gt;
+
+&lt;p&gt;While this is not a step-by-step guide—especially since Microsoft frequently changes UI elements—the general approach is:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Replace all user credentials&lt;/strong&gt; with the service account in every workflow action.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Ensure the service account has the necessary Microsoft licenses&lt;/strong&gt; (Power Automate, Teams, Excel, etc.). A service account without proper licensing is useless.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Verify connections.&lt;/strong&gt; The Power Automate flow page provides an overview of all active connections—ensure all user credentials are replaced with the service account.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Share the flow with the service account and at least one other trusted individual.&lt;/strong&gt; Despite using service account credentials, PA does not automatically grant ownership to the service account.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Consider setting the service account as the primary owner&lt;/strong&gt;, though leaving yourself as an owner can be beneficial for failure notifications.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;To mitigate Microsoft’s credential management issues in Power Automate, use service accounts for workflow connections.&lt;/p&gt;
+
+&lt;p&gt;Without them, workflows remain tied to personal accounts, exposing credentials to shared users and risking flow termination when employees leave.&lt;/p&gt;
+
+&lt;p&gt;While this approach isn’t perfect, it effectively mimics the functionality of deprecated Teams connectors and provides a more secure, maintainable solution. Hopefully, Microsoft will eventually introduce a native way to manage credentials more securely in Power Automate.&lt;/p&gt;
+
+</description>
+        <pubDate>Thu, 13 Feb 2025 00:00:00 +0000</pubDate>
+        <link>http://0.0.0.0:4000/2025/02/13/power-automate/</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/2025/02/13/power-automate/</guid>
+        
+        
+      </item>
     
       <item>
         <title>Hello World!</title>

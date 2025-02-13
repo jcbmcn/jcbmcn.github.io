@@ -12,28 +12,24 @@
 
     <!-- Open Graph -->
     <meta property="og:title"
-        content="Hello World! - Jacob McNeilly Blog">
+        content="Power Automate - Jacob McNeilly Blog">
     
     <meta property="og:type" content="article">
-    <meta property="og:description" content="Hello World!
+    <meta property="og:description" content="The Problem
 ">
     
-    <meta property="article:published_time" content=" 2025-01-15T19:43:38Z">
+    <meta property="article:published_time" content=" 2025-02-13T00:00:00Z">
     
     
-    <meta property="article:author" content="jcbmcn">
+    <meta property="article:author" content="Jacob McNeilly">
     
-    
-    <meta property="article:tag" content="World">
-    
-    <meta property="article:tag" content="Hello">
     
     
     <meta property="og:image" content="http://0.0.0.0:4000https://github.com/Huxpro.png">
-    <meta property="og:url" content="http://0.0.0.0:4000/2025/01/15/hello-world/">
+    <meta property="og:url" content="http://0.0.0.0:4000/2025/02/13/power-automate/">
     <meta property="og:site_name" content="Jacob McNeilly Blog">
 
-    <title>Hello World! - Jacob McNeilly Blog</title>
+    <title>Power Automate - Jacob McNeilly Blog</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -42,7 +38,7 @@
     <link rel="shortcut icon" href="/img/favicon.ico">
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://0.0.0.0:4000/2025/01/15/hello-world/">
+    <link rel="canonical" href="http://0.0.0.0:4000/2025/02/13/power-automate/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href=" /css/bootstrap.min.css">
@@ -208,7 +204,7 @@
 
     <!-- Image to hack wechat -->
 <!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="/img/bg-walle.jpg" width="0" height="0"> -->
+<!-- <img src="/img/pexels-tara-winstead-8386435.jpg" width="0" height="0"> -->
 
 <!-- Post Header -->
 
@@ -217,7 +213,7 @@
 <style type="text/css">
     header.intro-header{
         position: relative;
-        background-image: url('/img/bg-walle.jpg');
+        background-image: url('/img/pexels-tara-winstead-8386435.jpg');
         background: ;
     }
 
@@ -237,15 +233,11 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/archive/?tag=World" title="World">World</a>
-                        
-                        <a class="tag" href="/archive/?tag=Hello" title="Hello">Hello</a>
-                        
                     </div>
-                    <h1>Hello World!</h1>
+                    <h1>Power Automate</h1>
                     
-                    <h2 class="subheading"> "Hello World, Hello Blog"</h2>
-                    <span class="meta">Posted by jcbmcn on January 15, 2025</span>
+                    <h2 class="subheading">The Operational Credential Conundrum</h2>
+                    <span class="meta">Posted by Jacob McNeilly on February 13, 2025</span>
                 </div>
             </div>
         </div>
@@ -272,19 +264,107 @@
                 <!-- Multi-Lingual -->
                 
 
-				<h1 id="hello-world">Hello World!</h1>
+				<h1 id="the-problem">The Problem</h1>
+
+<h2 id="pros">Pros</h2>
+
+<p>Power Automate (PA) is an incredibly powerful tool, yet it is often overlooked or underutilized in organizations. It enables automation of many manual tasks, such as:</p>
+
+<ul>
+  <li>Parsing webhooks and generating Microsoft Teams messages</li>
+  <li>Sending and receiving API requests/responses</li>
+  <li>Consolidating data from multiple Microsoft services for reporting and analysis</li>
+  <li>Creating custom workflows that mimic Microsoft Teams app functionalities</li>
+</ul>
+
+<h2 id="cons">Cons</h2>
+
+<p>However, PA has notable drawbacks. Managing flows centrally—like one would with Infrastructure as Code (IaC)—is challenging. There’s no straightforward way to deploy flows to production, and sharing flows across teams is cumbersome.</p>
+
+<h2 id="the-real-problem-credential-sharing">The <em>Real</em> Problem: Credential Sharing</h2>
+
+<p>A critical issue with PA is credential management.</p>
+
+<p>For example, Microsoft Teams previously supported webhook connectors, allowing third-party services to send data directly to Teams. However, in late 2024, Microsoft announced plans to deprecate these connectors, initially giving organizations only a few months to adapt. Following backlash, they postponed (but did not cancel) the deprecation.</p>
+
+<p>With this change looming, I needed a way to maintain webhook functionality across multiple teams. Microsoft’s recommendation? Use Power Automate. Setting up a simple PA flow to receive webhook payloads and post messages to Teams was easy. Microsoft even provides countless pre-built templates for this purpose.</p>
+
+<p>However, once I tested my flow, I noticed an issue—every message was posted under my name. This raised critical concerns:</p>
+<ul>
+  <li>What would happen if I leave the organization?</li>
+  <li>Would the flow stop working?</li>
+  <li>How would a teammate gain access to these flows if my account was disabled?</li>
+</ul>
+
+<p>A failure in production alerting due to a deactivated account could lead to major outages.</p>
+
+<p>Power Automate does offer a credential-sharing feature, which allows users to share flows along with their credentials. However, this presents a new set of risks:</p>
+<ul>
+  <li>If shared, does the flow allow teammates to impersonate me?</li>
+  <li>Is there some sort of audit tracking to prevent a rogue employee from abusing my credentials?</li>
+</ul>
+
+<p>The idea that PA’s solution to this problem is sharing personal credentials felt fundamentally flawed—especially considering that the original Teams connectors were designed to be user-independent.</p>
+
+<p>There must be a better way.</p>
+
+<p><strong>The Core Issue: Workflows should not be tied to individual user credentials.</strong></p>
+
+<h1 id="the-solution">The Solution</h1>
+
+<p><strong>Service Accounts.</strong></p>
+
+<h2 id="cons-1">Cons</h2>
+
+<p>From a security standpoint, service accounts are not a perfect solution. They obscure which specific user performs an action, meaning that, in theory, a bad actor could misuse the account without a clear audit trail.</p>
+
+<p>However, this is still preferable to tying critical workflows to a personal account. At least a service account prevents individual credential exposure and eliminates the risk of a flow breaking if a user leaves.</p>
+
+<h2 id="pros-1">Pros</h2>
+
+<p>By using service accounts, we:</p>
+
+<ul>
+  <li>Protect individual user credentials</li>
+  <li>Ensure workflows continue functioning even when employees leave</li>
+  <li>Reduce licensing costs for Power Automate</li>
+  <li>Maintain control over permissions granted to the service account</li>
+</ul>
+
+<h1 id="the-implementation">The Implementation</h1>
+
+<p>You can still create and test flows using your personal account. However, before deploying them in a production environment, transition all workflows to use a service account.</p>
+
+<p>While this is not a step-by-step guide—especially since Microsoft frequently changes UI elements—the general approach is:</p>
+
+<ol>
+  <li><strong>Replace all user credentials</strong> with the service account in every workflow action.</li>
+  <li><strong>Ensure the service account has the necessary Microsoft licenses</strong> (Power Automate, Teams, Excel, etc.). A service account without proper licensing is useless.</li>
+  <li><strong>Verify connections.</strong> The Power Automate flow page provides an overview of all active connections—ensure all user credentials are replaced with the service account.</li>
+  <li><strong>Share the flow with the service account and at least one other trusted individual.</strong> Despite using service account credentials, PA does not automatically grant ownership to the service account.</li>
+  <li><strong>Consider setting the service account as the primary owner</strong>, though leaving yourself as an owner can be beneficial for failure notifications.</li>
+</ol>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p>To mitigate Microsoft’s credential management issues in Power Automate, use service accounts for workflow connections.</p>
+
+<p>Without them, workflows remain tied to personal accounts, exposing credentials to shared users and risking flow termination when employees leave.</p>
+
+<p>While this approach isn’t perfect, it effectively mimics the functionality of deprecated Teams connectors and provides a more secure, maintainable solution. Hopefully, Microsoft will eventually introduce a native way to manage credentials more securely in Power Automate.</p>
+
 
 
                 <hr style="visibility: hidden;">
                 <ul class="pager">
                     
-                    
-                    <li class="next">
-                        <a href="/2025/02/13/power-automate/" data-toggle="tooltip" data-placement="top" title="Power Automate">
-                        Next<br>
-                        <span>Power Automate</span>
+                    <li class="previous">
+                        <a href="/2025/01/15/hello-world/" data-toggle="tooltip" data-placement="top" title="Hello World!">
+                        Previous<br>
+                        <span>Hello World!</span>
                         </a>
                     </li>
+                    
                     
                 </ul>
                 <hr style="visibility: hidden;">
