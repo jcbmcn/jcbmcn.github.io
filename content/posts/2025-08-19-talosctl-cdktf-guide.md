@@ -11,28 +11,18 @@ code:
 ---
 ## Purpose
 
-Learn how to use CDKTF to configure a homelab Kubernetes cluster on bare  
-metal with Talos Linux. Along the way, you'll discover how bare-metal  
-Kubernetes is provisioned, how CDKTF maintains state, and why you may or  
-may not regret choosing CDKTF over vanilla Terraform. Spoiler: CDKTF is  
-verbose. Like, really verbose. But hey---you're here for the challenge.
+Learn how to use CDKTF to configure a homelab Kubernetes cluster on bare metal with Talos Linux. Along the way, you'll discover how bare-metal Kubernetes is provisioned, how CDKTF maintains state, and why you may or may not regret choosing CDKTF over vanilla Terraform. Spoiler: CDKTF is verbose. Like, really verbose. But hey---you're here for the challenge.
 
->Disclaimer: This is my first real dive into CDKTF. My background is  
-mostly Terraform proper, so consider this equal parts tutorial and  
-cautionary tale. Copy/paste at your own risk.
+>Disclaimer: This is my first real dive into CDKTF. My background is mostly Terraform proper, so consider this equal parts tutorial and cautionary tale. Copy/paste at your own risk.
 
 ## What to Expect
 
-This post documents my experience setting up a Talos Linux cluster with  
-CDKTF. Expect some trial and error, random side notes, and hints at  
-future projects (GitLab runners, State Backend Management, etc.). The  
-guide will be both informative and campy---so buckle up.
+This post documents my experience setting up a Talos Linux cluster with CDKTF. Expect some trial and error, random side notes, and hints at future projects (GitLab runners, State Backend Management, etc.). The guide will be both informative and campy---so buckle up.
 
 ---
 ## 1. Procuring / Planning
 
-First things first: hardware. For this guide I used four [Lenovo Thinkcentre m715q](https://www.lenovo.com/us/en/p/desktops/thinkcentre/m-series-tiny/thinkcentre-m715q-tiny/11tc1mt715q) (thanks, eBay) tied together with a [TP-Link 8 Port Gigabit Ethernet Network Switch](https://www.amazon.com/dp/B00A121WN6?ref=ppx_yo2ov_dt_b_fed_asin_title) and some [POWERLINE](https://www.tp-link.com/us/powerline/) adapters! Yes, powerline. Yes, it works. Yes,  
-you're allowed to judge me.
+First things first: hardware. For this guide I used four [Lenovo Thinkcentre m715q](https://www.lenovo.com/us/en/p/desktops/thinkcentre/m-series-tiny/thinkcentre-m715q-tiny/11tc1mt715q) (thanks, eBay) tied together with a [TP-Link 8 Port Gigabit Ethernet Network Switch](https://www.amazon.com/dp/B00A121WN6?ref=ppx_yo2ov_dt_b_fed_asin_title) and some [POWERLINE](https://www.tp-link.com/us/powerline/) adapters! Yes, powerline. Yes, it works. Yes, you're allowed to judge me.
 
 Here's a list of everything I used:
 
