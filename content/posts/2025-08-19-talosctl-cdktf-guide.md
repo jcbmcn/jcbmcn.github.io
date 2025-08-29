@@ -78,9 +78,7 @@ Congrats, you are ready to start building out your configs!
 ---
 ## 3.  Laying the Foundation
 
-Here's where we strap ourselves to CDKTF. Is it more verbose than  
-Terraform? Absolutely. Will I complain about it the whole time? Also  
-yes. But it's powerful, and you'll learn something.
+Here's where we strap ourselves to CDKTF. Is it more verbose than Terraform? Absolutely. Will I complain about it the whole time? Also yes. But it's powerful, and you'll learn something.
 
 #### Prerequisites
 - cli [cdktf](https://developer.hashicorp.com/terraform/tutorials/cdktf/cdktf-install)
@@ -179,8 +177,7 @@ Already feeling the verbosity? Get used to it.
 
 ### Machine Secrets & Client Configuration
 
-Generate secrets and client configs (Cluster name = SpongeBob-themed,  
-obviously)
+Generate secrets and client configs (Cluster name = SpongeBob-themed, obviously)
 
 `main.py`
 ```python
@@ -642,10 +639,8 @@ Once you see 4 nodes,  congrats! You have configured a Kuberentes cluster using 
 
 ## Conclusion
 
-You survived CDKTF, Talos, and bare-metal Kubernetes. Your cluster is  
-up, your configs are reproducible, and you've earned bragging rights.
+You survived CDKTF, Talos, and bare-metal Kubernetes. Your cluster is up, your configs are reproducible, and you've earned bragging rights.
 
-Yes, it's verbose. Yes, it's sometimes unnecessary. But you learned  
-something valuable, and you did it with style.
+Yes, it's verbose. Yes, it's sometimes unnecessary. But you learned something valuable, and you did it with style.
 
 Look out for more of my guides for more cdktf and kuberentes configurations!
