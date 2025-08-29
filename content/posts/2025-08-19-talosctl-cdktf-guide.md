@@ -1,20 +1,14 @@
 ---
+date: '2025-08-28'
 title: 'Using CDKTF to Provision Talos Linux'
 author: 'Jacob McNeilly'
-date: '2025-08-28'
 draft: false
-type: 'blog'
-featured: true
 tags: [cdktf, terraform, python, talos linux, kubernetes]
-weight: 1
-images:
-    featured_image: '/img/blog/cdktf_py_banner.png'
+featuredImage: '/images/blog/cdktf_py_banner.png'
+code:
+  copy: true
+  maxShownLines: 50
 ---
-<p align="center">
-  <img src="/img/blog/cdktf_py_banner.png" alt="Banner" width="60%">
-</p>
-<br><br><br>
-
 ## Purpose
 
 Learn how to use CDKTF to configure a homelab Kubernetes cluster on bare  
@@ -44,12 +38,12 @@ Here's a list of everything I used:
 
 | **Item**                                       | **Quantity**              | **Image**                            | **Link**                                                                                             |
 | ---------------------------------------------- | ------------------------- | ------------------------------------ | ---------------------------------------------------------------------------------------------------- |
-| Lenovo Thinkcentre m715q                       | 4                         | ![lenovos.png](/static/img/blog/lenovos.png) | https://www.lenovo.com/us/en/p/desktops/thinkcentre/m-series-tiny/thinkcentre-m715q-tiny/11tc1mt715q |
-| TP-Link 8 Port Gigabit Ethernet Network Switch | 1                         | ![switch](/static/img/blog/switch.png) | https://www.amazon.com/dp/B00A121WN6?ref=ppx_yo2ov_dt_b_fed_asin_title                               |
-| Ethernet Cables                                | 6 (extra one for my NAS!) | ![ethernet](/static/img/blog/ethernet.png) | Anywhere                                                                                             |
-| Powerline Adapters                             | 1 receiver & 1 sender     | ![powerline](/static/img/blog/powerline.png) | https://a.co/d/68itm5H                                                                               |
-| USB Stick 32GB                                 | 1                         | ![usb_stick](/static/img/blog/thumb_drive.png) | Anywhere                                                                                             |
-| Logitech K400 Plus Wireless                    | 1                         | ![wireless_kb](/static/img/blog/wireless_kb.png) | https://a.co/d/4qnOiU7                                                                               |
+| Lenovo Thinkcentre m715q                       | 4                         | ![lenovos.png](/images/blog/lenovos.png) | https://www.lenovo.com/us/en/p/desktops/thinkcentre/m-series-tiny/thinkcentre-m715q-tiny/11tc1mt715q |
+| TP-Link 8 Port Gigabit Ethernet Network Switch | 1                         | ![switch](/images/blog/switch.png) | https://www.amazon.com/dp/B00A121WN6?ref=ppx_yo2ov_dt_b_fed_asin_title                               |
+| Ethernet Cables                                | 6 (extra one for my NAS!) | ![ethernet](/images/blog/ethernet.png) | Anywhere                                                                                             |
+| Powerline Adapters                             | 1 receiver & 1 sender     | ![powerline](/images/blog/powerline.png) | https://a.co/d/68itm5H                                                                               |
+| USB Stick 32GB                                 | 1                         | ![usb_stick](/images/blog/thumb_drive.png) | Anywhere                                                                                             |
+| Logitech K400 Plus Wireless                    | 1                         | ![wireless_kb](/images/blog/wireless_kb.png) | https://a.co/d/4qnOiU7                                                                               |
 
 #### Lenovo Thinkcentre m715q Specs
 
@@ -62,11 +56,11 @@ Here's a list of everything I used:
 
 #### Network Diagram
 
-![Network Diagram Cluster](/static/img/blog/Network%20Diagram%20Cluster.png)
+![Network Diagram Cluster](/images/blog/Network%20Diagram%20Cluster.png)
 
 #### Cluster Diagram
 
-![Cluster Diagram](/static/img/blog/Cluster%20Diagram.png)
+![Cluster Diagram](/images/blog/Cluster%20Diagram.png)
 
 ---
 ## 2.  Prepping For Image
@@ -109,7 +103,7 @@ yes. But it's powerful, and you'll learn something.
 Now that we have our hardware in order, we can move on to setting up our project.
 
 Create a directory for our project
-```sh
+```sh 
 mkdir cdktf_talos_project && cd cdktf_talos_project
 ```
 

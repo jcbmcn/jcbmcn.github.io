@@ -1,19 +1,18 @@
 ---
-title: 'Power Automate: The Operational Credential Conundrum'
+title: 'Power Automate'
+subtitle: "The Operational Credential Conundrum"
 author: 'Jacob McNeilly'
 date: '2025-02-13'
 draft: false
-type: 'blog'
-featured: true
 tags: [microsoft, power automate, credentials, service account]
-weight: 1
-images:
-    featured_image: '/img/blog/robot-arm.jpg'
+images: ['/images/blog/robot-arm.jpg']
+featuredImage: '/images/blog/robot-arm.jpg'
+fontawesome: true
 ---
-<p align="center">
-  <img src="/img/blog/robot-arm.jpg" alt="Banner" width="60%">
+<!-- <p align="center">
+  <img src="/images/blog/robot-arm.jpg" alt="Banner" width="60%">
 </p>
-<br><br><br>
+<br><br><br> -->
 
 # The Problem
 
