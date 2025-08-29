@@ -67,8 +67,7 @@ Now that all your components are together you will need to create a bootable ima
 
 The ISO link I received was: https://factory.talos.dev/image/743d53d3c9cc1942e0a3fc7167565665ea25823e6261d82bf022e9a9e50ed84d/v1.10.6/metal-amd64.iso
 
->Pro tip: Note down the image link from Image Factory---you'll need it  
-for configs later.
+>Pro tip: Note down the image link from Image Factory---you'll need it for configs later.
 
 After downloading the ISO, we now need to load it onto a flash drive. I'm on a Mac, so I used [balenaEtcher](https://etcher.balena.io/)
 
