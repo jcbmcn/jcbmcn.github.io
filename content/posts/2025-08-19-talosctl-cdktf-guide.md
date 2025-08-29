@@ -6,8 +6,7 @@ draft: false
 tags: [cdktf, terraform, python, talos linux, kubernetes]
 featuredImage: '/images/blog/cdktf_py_banner.png'
 code:
-  copy: true
-  maxShownLines: 50
+    copy: true
 ---
 ## Purpose
 
