@@ -452,6 +452,7 @@ What we are looking for:
 | Apiserver          | Healthy |
 | Controller-Manager | Healthy |
 | Scheduler          | Healthy |
+
 If that all matches, congrats! Your conrol plane is built. Check your cdktf.out directory for your talosconfig and kubeconfig. My pathing is `cdktf.out/stacks/cdktf_talos_project/<kubeconfig or talosconfig>`
 
 ## 6. Verify Cluster Connectivity
