@@ -254,7 +254,7 @@ Time to run your first deploy! Run `cdktf deploy`
 
 This will output a terraform plan. Review it and make sure it all looks good. The `TerraformOutput` we made won't show up until we approve.
 
-If it looks good, select approve. After hitting approve you'll see the `disks_ouptut`. Note down the disk you wish to target. In my case, it is `/dev/sdb`
+If it looks good, select approve. After hitting approve you'll see the `disks_output`. Note down the disk you wish to target. In my case, it is `/dev/sdb`
 ```json
  {
       "bus_path": "/pci0000:00/0000:00:08.2/0000:04:00.0/ata1/host1/target1:0:0/1:0:0:0",
@@ -282,7 +282,7 @@ In this patch we want to setup longhorn isci settings, where to install, what im
 
 If you do anything, ensure the `disk: /dev/sdb` is targeting the right disk.
 
-`config_patch_controlplan.yaml`
+`config_patch_controlplane.yaml`
 ```yaml
 machine:
   kubelet:
@@ -305,7 +305,7 @@ cluster:
       name: none
 ```
 
-Now we need to configure out control plane machine config and apply. Replace te cluster_endpoint and node_attribute ips with your control plane.
+Now we need to configure out control plane machine config and apply. Replace the cluster_endpoint and node_attribute ips with your control plane.
 
 `main.py`
 ```python
@@ -381,7 +381,7 @@ Now we need to configure out control plane machine config and apply. Replace te 
 
 Finally, let's bootstrap the cluster and output a [Kubeconfig](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/) so we can see if our cluster is working.
 
-main.py
+`main.py`
 ```python
 
 
