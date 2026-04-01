@@ -34,10 +34,11 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. The Hugo workflow (`hugo.yml`) is gone — only one deploy workflow exists
   4. A post with `draft: true` is present in the repo but does not appear in the deployed build
   5. jcbmcn.com resolves correctly (Cloudflare DNS + CNAME file intact after deploy)
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 01-01: TBD
+- [ ] 01-01-PLAN.md — Remove Hugo, scaffold Astro 6, create CI/CD deploy workflow
+- [ ] 01-02-PLAN.md — Migrate static assets to public/, create CNAME, add content collection with draft filtering
 
 ### Phase 2: Content Layer + Migration
 **Goal**: All existing posts live in the new Astro content collection with validated frontmatter, correct URL slugs, and edge-case fields resolved
@@ -103,7 +104,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Scaffold + CI/CD | 0/TBD | Not started | - |
+| 1. Scaffold + CI/CD | 0/2 | Not started | - |
 | 2. Content Layer + Migration | 0/TBD | Not started | - |
 | 3. Core Pages + Visual Design | 0/TBD | Not started | - |
 | 4. Search + Tag Filtering | 0/TBD | Not started | - |
