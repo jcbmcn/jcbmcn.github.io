@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-stopped_at: Phase 1 context gathered
-last_updated: "2026-04-01T22:50:06.861Z"
+stopped_at: Completed 01-scaffold-ci-cd phase (01-01 + 01-02)
+last_updated: "2026-04-01T23:10:04.739Z"
 last_activity: 2026-04-01 — Roadmap created; 5 phases defined, all 19 v1 requirements mapped
 progress:
   total_phases: 5
-  completed_phases: 0
-  total_plans: 0
-  completed_plans: 0
+  completed_phases: 1
+  total_plans: 2
+  completed_plans: 2
   percent: 0
 ---
 
@@ -52,6 +52,8 @@ Progress: [░░░░░░░░░░] 0%
 - Trend: -
 
 *Updated after each plan completion*
+| Phase 01-scaffold-ci-cd P01-01 | 3 | 2 tasks | 16 files |
+| Phase 01-scaffold-ci-cd P01-02 | 2 | 2 tasks | 27 files |
 
 ## Accumulated Context
 
@@ -64,6 +66,9 @@ Recent decisions affecting current work:
 - [Roadmap]: CI/CD first — nothing else built until deployment to jcbmcn.com is verified on a placeholder page
 - [Roadmap]: Phase 3 requires UI design checkpoint before visual implementation begins
 - [Roadmap]: Per-phase git branches `gsd/phase-0X-<slug>` with PRs to `main` for review
+- [Phase 01-scaffold-ci-cd]: npm chosen as package manager for Astro — withastro/action@v5 auto-detects from package-lock.json
+- [Phase 01-scaffold-ci-cd]: Astro 6 Content Layer API (src/content.config.ts + glob loader) replaces legacy content collections
+- [Phase 01-scaffold-ci-cd]: .gitignore updated: /public/ removed (was excluding static assets), /dist/ added (Astro build output)
 
 ### Pending Todos
 
@@ -76,6 +81,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-01T22:50:06.854Z
-Stopped at: Phase 1 context gathered
-Resume file: .planning/phases/01-scaffold-ci-cd/01-CONTEXT.md
+Last session: 2026-04-01T23:10:04.736Z
+Stopped at: Completed 01-scaffold-ci-cd phase (01-01 + 01-02)
+Resume file: None

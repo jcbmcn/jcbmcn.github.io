@@ -37,8 +37,8 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 2 plans
 
 Plans:
-- [ ] 01-01-PLAN.md — Remove Hugo, scaffold Astro 6, create CI/CD deploy workflow
-- [ ] 01-02-PLAN.md — Migrate static assets to public/, create CNAME, add content collection with draft filtering
+- [x] 01-01-PLAN.md — Remove Hugo, scaffold Astro 6, create CI/CD deploy workflow
+- [x] 01-02-PLAN.md — Migrate static assets to public/, create CNAME, add content collection with draft filtering
 
 ### Phase 2: Content Layer + Migration
 **Goal**: All existing posts live in the new Astro content collection with validated frontmatter, correct URL slugs, and edge-case fields resolved

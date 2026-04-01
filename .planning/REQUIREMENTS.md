@@ -7,11 +7,11 @@
 
 ### Infrastructure
 
-- [ ] **INFRA-01**: Project scaffolded with Astro 6, TypeScript (strict), Tailwind CSS 4 (via Vite plugin), Shiki syntax highlighting, and Fuse.js 7
-- [ ] **INFRA-02**: GitHub Actions workflow deploys the static site to GitHub Pages using `withastro/action@v5` (replacing `hugo.yml`)
-- [ ] **INFRA-03**: `public/CNAME` file contains `jcbmcn.com` and is present in every build artifact
-- [ ] **INFRA-04**: Hugo workflow (`hugo.yml`) is deleted — only the new deploy workflow is active
-- [ ] **INFRA-05**: Posts with `draft: true` in frontmatter are excluded from production builds
+- [x] **INFRA-01**: Project scaffolded with Astro 6, TypeScript (strict), Tailwind CSS 4 (via Vite plugin), Shiki syntax highlighting, and Fuse.js 7
+- [x] **INFRA-02**: GitHub Actions workflow deploys the static site to GitHub Pages using `withastro/action@v5` (replacing `hugo.yml`)
+- [x] **INFRA-03**: `public/CNAME` file contains `jcbmcn.com` and is present in every build artifact
+- [x] **INFRA-04**: Hugo workflow (`hugo.yml`) is deleted — only the new deploy workflow is active
+- [x] **INFRA-05**: Posts with `draft: true` in frontmatter are excluded from production builds
 
 ### Content
 
@@ -74,11 +74,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| INFRA-01 | Phase 1 | Pending |
-| INFRA-02 | Phase 1 | Pending |
-| INFRA-03 | Phase 1 | Pending |
-| INFRA-04 | Phase 1 | Pending |
-| INFRA-05 | Phase 1 | Pending |
+| INFRA-01 | Phase 1 | Complete |
+| INFRA-02 | Phase 1 | Complete |
+| INFRA-03 | Phase 1 | Complete |
+| INFRA-04 | Phase 1 | Complete |
+| INFRA-05 | Phase 1 | Complete |
 | CONT-01 | Phase 2 | Pending |
 | CONT-02 | Phase 2 | Pending |
 | CONT-03 | Phase 2 | Pending |
