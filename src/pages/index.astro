@@ -1,4 +1,9 @@
 ---
+// Placeholder page — Phase 3 replaces this with the real homepage
+import { getCollection } from 'astro:content';
+
+// Filter out drafts — verifies INFRA-05
+const posts = await getCollection('blog', ({ data }) => data.draft !== true);
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -28,5 +33,6 @@
       <a href="https://github.com/jcbmcn">GitHub</a>
       <a href="https://www.linkedin.com/in/jacob-mcneilly-a6a516112/">LinkedIn</a>
     </nav>
+    <!-- Posts: {posts.length} published post(s) -->
   </body>
 </html>
