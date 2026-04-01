@@ -1,9 +1,16 @@
-/public/
+# Astro build output (not public/ — that's static assets)
+/dist/
+
+# Hugo artifacts (no longer used)
 /resources/_gen/
 /assets/jsconfig.json
 hugo_stats.json
 /.hugo_build.lock
+
 node_modules/
 .vscode/
 .claude/
 .opencode/
+
+# macOS
+.DS_Store
