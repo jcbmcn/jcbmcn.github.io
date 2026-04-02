@@ -18,7 +18,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [ ] **Phase 1: Scaffold + CI/CD** - Astro project wired to GitHub Pages with CNAME; placeholder page live at jcbmcn.com
 - [x] **Phase 2: Content Layer + Migration** - Zod-validated content schema and all 3 existing posts migrated with correct URLs (completed 2026-04-02)
-- [ ] **Phase 3: Core Pages + Visual Design** - All page routes implemented; visual design discussed and applied (UI design checkpoint required)
+- [x] **Phase 3: Core Pages + Visual Design** - All page routes implemented; visual design discussed and applied (UI design checkpoint required) (completed 2026-04-02)
 - [ ] **Phase 4: Search + Tag Filtering** - Fuse.js search and tag filter working on the blog listing page
 - [ ] **Phase 5: SEO + Polish** - RSS feed and sitemap live; site production-ready
 
@@ -71,9 +71,9 @@ Plans:
 > ⚠️ **Design checkpoint required before visual implementation.** This phase begins with an in-depth UI discussion covering: color scheme, typography, spacing, hero/bio treatment, and light-mode CSS color token architecture (to be dark-mode-ready for v2). Do not proceed to visual implementation until the design direction is agreed. Run `/gsd-discuss phase-3` or open the UI discussion with the user directly.
 
 Plans:
-- [ ] 03-01-PLAN.md — Tailwind 4 install, global.css CSS tokens, BaseLayout.astro (foundation)
-- [ ] 03-02-PLAN.md — PostCard component, homepage hero + recent posts, /posts/ listing page
-- [ ] 03-03-PLAN.md — Dynamic post pages /posts/[slug]/ with featured images and copy-to-clipboard
+- [x] 03-01-PLAN.md — Tailwind 4 install, global.css CSS tokens, BaseLayout.astro (foundation)
+- [x] 03-02-PLAN.md — PostCard component, homepage hero + recent posts, /posts/ listing page
+- [x] 03-03-PLAN.md — Dynamic post pages /posts/[slug]/ with featured images and copy-to-clipboard
 
 ### Phase 4: Search + Tag Filtering
 **Goal**: Visitors can find posts by tag or free-text search on the blog listing page without any server-side processing
@@ -109,7 +109,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 |-------|----------------|--------|-----------|
 | 1. Scaffold + CI/CD | 0/2 | Not started | - |
 | 2. Content Layer + Migration | 2/2 | Complete   | 2026-04-02 |
-| 3. Core Pages + Visual Design | 0/TBD | Not started | - |
+| 3. Core Pages + Visual Design | 3/3 | Complete   | 2026-04-02 |
 | 4. Search + Tag Filtering | 0/TBD | Not started | - |
 | 5. SEO + Polish | 0/TBD | Not started | - |
 
