@@ -15,7 +15,7 @@ const formattedDate = date
   : null;
 ---
 
-<article class="post-card">
+<article class="post-card" data-tags={tags.join(',')}>
   <a href={`/posts/${slug}/`} class="post-card__link">
     <div class="post-card__body">
       <div class="post-card__text">
@@ -28,7 +28,11 @@ const formattedDate = date
         {tags.length > 0 && (
           <ul class="post-card__tags">
             {tags.map((tag) => (
-              <li class="post-card__tag">{tag}</li>
+              <li>
+                <button type="button" class="post-card__tag" data-tag={tag} aria-pressed="false">
+                  {tag}
+                </button>
+              </li>
             ))}
           </ul>
         )}
@@ -105,6 +109,10 @@ const formattedDate = date
     gap: 0.375rem;
   }
 
+  .post-card__tags li {
+    display: contents; /* removes <li> box so only the button is visible */
+  }
+
   .post-card__tag {
     font-size: 0.75rem;
     font-weight: 500;
@@ -112,6 +120,20 @@ const formattedDate = date
     background: var(--color-accent-subtle);
     padding: 0.125rem 0.5rem;
     border-radius: 9999px;
+    border: none;        /* remove default button border */
+    cursor: pointer;     /* pointer cursor per UI-SPEC */
+    font-family: inherit; /* match body font */
+    line-height: 1;
+  }
+
+  .post-card__tag:hover {
+    background: var(--color-accent);
+    color: white;
+  }
+
+  .post-card__tag--active {
+    background: var(--color-accent);
+    color: white;
   }
 
   .post-card__image-wrap {
