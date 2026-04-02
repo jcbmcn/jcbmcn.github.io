@@ -49,10 +49,11 @@ Plans:
   2. Each post URL matches the Hugo `:filename` permalink pattern (e.g., `/2025-12-28-building-codeowners-simulator/`)
   3. Posts with `featuredImage` and posts with `images:` both resolve to the same canonical image field without errors
   4. The `code.copy` frontmatter field in existing posts does not cause build or schema validation errors
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 02-01: TBD
+- [ ] 02-01-PLAN.md — Expand Zod blog schema to full field set (title, author, date, tags, featuredImage, images, subtitle, fontawesome, code.copy)
+- [ ] 02-02-PLAN.md — Restore 3 posts from git history into src/content/blog/ and verify edge cases
 
 ### Phase 3: Core Pages + Visual Design
 **Goal**: All page routes are implemented and the site looks like a polished personal brand — homepage with bio and recent posts, a full post listing, and individual post pages with syntax-highlighted code
