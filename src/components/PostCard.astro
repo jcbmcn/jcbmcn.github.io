@@ -1,0 +1,127 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  entry: CollectionEntry<'blog'>;
+}
+
+const { entry } = Astro.props;
+const { title, date, tags = [], featuredImage, images } = entry.data;
+const image = featuredImage ?? images?.[0] ?? undefined;
+const slug = entry.id;
+
+const formattedDate = date
+  ? date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+  : null;
+---
+
+<article class="post-card">
+  <a href={`/posts/${slug}/`} class="post-card__link">
+    <div class="post-card__body">
+      <div class="post-card__text">
+        <h2 class="post-card__title">{title}</h2>
+        {formattedDate && (
+          <time class="post-card__date" datetime={date?.toISOString()}>
+            {formattedDate}
+          </time>
+        )}
+        {tags.length > 0 && (
+          <ul class="post-card__tags">
+            {tags.map((tag) => (
+              <li class="post-card__tag">{tag}</li>
+            ))}
+          </ul>
+        )}
+      </div>
+      {image && (
+        <div class="post-card__image-wrap">
+          <img
+            src={image}
+            alt=""
+            width="96"
+            height="96"
+            class="post-card__image"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      )}
+    </div>
+  </a>
+</article>
+
+<style>
+  .post-card {
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    background: var(--color-surface);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .post-card:hover {
+    border-color: var(--color-accent);
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.08);
+  }
+
+  .post-card__link {
+    display: block;
+    padding: 1.25rem 1.5rem;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .post-card__body {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .post-card__text {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .post-card__title {
+    margin: 0 0 0.375rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    line-height: 1.4;
+  }
+
+  .post-card__date {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 0.5rem;
+  }
+
+  .post-card__tags {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+  }
+
+  .post-card__tag {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-accent);
+    background: var(--color-accent-subtle);
+    padding: 0.125rem 0.5rem;
+    border-radius: 9999px;
+  }
+
+  .post-card__image-wrap {
+    flex-shrink: 0;
+  }
+
+  .post-card__image {
+    width: 96px;
+    height: 96px;
+    object-fit: cover;
+    border-radius: 0.375rem;
+  }
+</style>

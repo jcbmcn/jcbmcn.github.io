@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-stopped_at: "Completed 02-content-layer-migration: plans 02-01 and 02-02 both done"
-last_updated: "2026-04-02T03:28:19.609Z"
+stopped_at: "Completed 03-core-pages-visual-design: all 3 plans done"
+last_updated: "2026-04-02T03:57:40.492Z"
 last_activity: 2026-04-02
 progress:
   total_phases: 5
-  completed_phases: 2
-  total_plans: 4
-  completed_plans: 4
+  completed_phases: 3
+  total_plans: 7
+  completed_plans: 7
   percent: 0
 ---
 
@@ -56,6 +56,9 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 01-scaffold-ci-cd P01-02 | 2 | 2 tasks | 27 files |
 | Phase 02-content-layer-migration P02-01 | 5 | 1 tasks | 1 files |
 | Phase 02-content-layer-migration P02-02 | 3 | 2 tasks | 3 files |
+| Phase 03-core-pages-visual-design P03-01 | 8 | 2 tasks | 5 files |
+| Phase 03-core-pages-visual-design P03-02 | 5 | 2 tasks | 3 files |
+| Phase 03-core-pages-visual-design P03-03 | 4 | 1 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -73,6 +76,9 @@ Recent decisions affecting current work:
 - [Phase 01-scaffold-ci-cd]: .gitignore updated: /public/ removed (was excluding static assets), /dist/ added (Astro build output)
 - [Phase 02-content-layer-migration]: author and date marked optional in schema so test-draft.md (minimal frontmatter) still validates — all fields except title are optional
 - [Phase 02-content-layer-migration]: Posts restored verbatim from git history (44bc5d5^) — no frontmatter or body edits; talosctl filename/date mismatch preserved
+- [Phase 03-core-pages-visual-design]: CSS custom properties (not Tailwind @theme) for color tokens — enables direct var() usage in component style blocks
+- [Phase 03-core-pages-visual-design]: Astro 6 Content Layer render API: render(entry) from astro:content (not legacy entry.render())
+- [Phase 03-core-pages-visual-design]: Copy-to-clipboard uses plain Astro script block — no hydration island needed for static post pages
 
 ### Pending Todos
 
@@ -85,6 +91,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-02T03:21:46.600Z
-Stopped at: Completed 02-content-layer-migration: plans 02-01 and 02-02 both done
+Last session: 2026-04-02T03:57:27.231Z
+Stopped at: Completed 03-core-pages-visual-design: all 3 plans done
 Resume file: None

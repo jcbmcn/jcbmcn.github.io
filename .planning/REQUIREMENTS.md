@@ -22,12 +22,12 @@
 
 ### Pages
 
-- [ ] **PAGE-01**: Homepage displays a personal bio/intro section and a section of recent posts (most recent N)
-- [ ] **PAGE-02**: Blog listing page displays all published posts
-- [ ] **PAGE-03**: Individual post pages render full Markdown content
-- [ ] **PAGE-04**: Individual post pages display featured images when present
-- [ ] **PAGE-05**: Individual post pages render code blocks with Shiki syntax highlighting
-- [ ] **PAGE-06**: Code blocks on post pages include a copy-to-clipboard button
+- [x] **PAGE-01**: Homepage displays a personal bio/intro section and a section of recent posts (most recent N)
+- [x] **PAGE-02**: Blog listing page displays all published posts
+- [x] **PAGE-03**: Individual post pages render full Markdown content
+- [x] **PAGE-04**: Individual post pages display featured images when present
+- [x] **PAGE-05**: Individual post pages render code blocks with Shiki syntax highlighting
+- [x] **PAGE-06**: Code blocks on post pages include a copy-to-clipboard button
 
 ### Search & Discovery
 
@@ -83,12 +83,12 @@ Which phases cover which requirements. Updated during roadmap creation.
 | CONT-02 | Phase 2 | Complete |
 | CONT-03 | Phase 2 | Complete |
 | CONT-04 | Phase 2 | Complete |
-| PAGE-01 | Phase 3 | Pending |
-| PAGE-02 | Phase 3 | Pending |
-| PAGE-03 | Phase 3 | Pending |
-| PAGE-04 | Phase 3 | Pending |
-| PAGE-05 | Phase 3 | Pending |
-| PAGE-06 | Phase 3 | Pending |
+| PAGE-01 | Phase 3 | Complete |
+| PAGE-02 | Phase 3 | Complete |
+| PAGE-03 | Phase 3 | Complete |
+| PAGE-04 | Phase 3 | Complete |
+| PAGE-05 | Phase 3 | Complete |
+| PAGE-06 | Phase 3 | Complete |
 | SRCH-01 | Phase 4 | Pending |
 | SRCH-02 | Phase 4 | Pending |
 | SEO-01 | Phase 5 | Pending |
