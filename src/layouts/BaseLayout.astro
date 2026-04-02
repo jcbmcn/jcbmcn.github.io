@@ -1,4 +1,6 @@
 ---
+import SiteHeader from '../components/SiteHeader.astro';
+
 interface Props {
   title?: string;
   description?: string;
@@ -12,10 +14,19 @@ const {
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script is:inline>
+      (function() {
+        const stored = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = stored ?? (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="alternate" type="application/rss+xml" title="Jacob McNeilly" href="/rss.xml">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -28,6 +39,7 @@ const {
     <link rel="manifest" href="/site.webmanifest" />
   </head>
   <body>
+    <SiteHeader />
     <slot />
   </body>
 </html>

@@ -1,0 +1,126 @@
+---
+---
+<header class="site-header">
+  <a href="/" class="site-name">Jacob McNeilly</a>
+  <div class="header-controls">
+    <a href="/rss.xml" class="rss-link" aria-label="RSS feed">RSS</a>
+    <button type="button" id="theme-toggle" aria-label="Switch to dark mode">
+      <span class="icon-moon">
+        <!-- Moon SVG — visible in light mode -->
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </span>
+      <span class="icon-sun" style="display:none">
+        <!-- Sun SVG — visible in dark mode -->
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+      </span>
+    </button>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('theme-toggle');
+  const moonIcon = btn?.querySelector('.icon-moon') as HTMLElement | null;
+  const sunIcon = btn?.querySelector('.icon-sun') as HTMLElement | null;
+
+  function applyTheme(theme: 'light' | 'dark') {
+    document.documentElement.setAttribute('data-theme', theme);
+    if (moonIcon && sunIcon) {
+      moonIcon.style.display = theme === 'light' ? '' : 'none';
+      sunIcon.style.display = theme === 'dark' ? '' : 'none';
+    }
+    if (btn) {
+      btn.setAttribute('aria-label',
+        theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'
+      );
+    }
+  }
+
+  // Sync icon state with current theme on load
+  const currentTheme = (document.documentElement.getAttribute('data-theme') ?? 'light') as 'light' | 'dark';
+  applyTheme(currentTheme);
+
+  btn?.addEventListener('click', () => {
+    const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    localStorage.setItem('theme', next);
+    applyTheme(next);
+  });
+</script>
+
+<style>
+  .site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    padding: 0 1.5rem;
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .site-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    text-decoration: none;
+  }
+
+  .site-name:hover {
+    color: var(--color-accent);
+  }
+
+  .header-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .rss-link {
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--color-accent);
+    text-decoration: none;
+    padding: 0.25rem 0.5rem;
+  }
+
+  .rss-link:hover {
+    color: var(--color-accent-hover);
+  }
+
+  #theme-toggle {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    color: var(--color-text-primary);
+    padding: 0.5rem;
+  }
+
+  #theme-toggle:hover {
+    background-color: var(--color-surface-alt);
+  }
+
+  #theme-toggle:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+</style>
