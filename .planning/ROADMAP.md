@@ -65,13 +65,15 @@ Plans:
   3. Individual post pages render full Markdown content with Shiki-highlighted code blocks
   4. Code blocks on post pages have a working copy-to-clipboard button
   5. Featured images appear on both the post listing and individual post pages when present
-**Plans**: TBD
+**Plans**: 3 plans
 **UI hint**: yes
 
 > ⚠️ **Design checkpoint required before visual implementation.** This phase begins with an in-depth UI discussion covering: color scheme, typography, spacing, hero/bio treatment, and light-mode CSS color token architecture (to be dark-mode-ready for v2). Do not proceed to visual implementation until the design direction is agreed. Run `/gsd-discuss phase-3` or open the UI discussion with the user directly.
 
 Plans:
-- [ ] 03-01: TBD
+- [ ] 03-01-PLAN.md — Tailwind 4 install, global.css CSS tokens, BaseLayout.astro (foundation)
+- [ ] 03-02-PLAN.md — PostCard component, homepage hero + recent posts, /posts/ listing page
+- [ ] 03-03-PLAN.md — Dynamic post pages /posts/[slug]/ with featured images and copy-to-clipboard
 
 ### Phase 4: Search + Tag Filtering
 **Goal**: Visitors can find posts by tag or free-text search on the blog listing page without any server-side processing
