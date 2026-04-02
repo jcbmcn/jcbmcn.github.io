@@ -15,10 +15,10 @@
 
 ### Content
 
-- [ ] **CONT-01**: A Zod-validated content schema defines frontmatter fields: `title`, `author`, `date`, `draft`, `tags`, `featuredImage` (optional), `images` (optional fallback)
-- [ ] **CONT-02**: All 3 existing posts are migrated from `content/posts/` to `src/content/blog/` with no changes to content
-- [ ] **CONT-03**: URL slugs match Hugo's `:filename` permalink pattern (e.g., `/2025-12-28-building-codeowners-simulator/`)
-- [ ] **CONT-04**: Frontmatter edge cases are handled: `images:` field falls back to `featuredImage:` as the canonical image source; nested `code.copy` field is ignored (copy buttons applied globally)
+- [x] **CONT-01**: A Zod-validated content schema defines frontmatter fields: `title`, `author`, `date`, `draft`, `tags`, `featuredImage` (optional), `images` (optional fallback)
+- [x] **CONT-02**: All 3 existing posts are migrated from `content/posts/` to `src/content/blog/` with no changes to content
+- [x] **CONT-03**: URL slugs match Hugo's `:filename` permalink pattern (e.g., `/2025-12-28-building-codeowners-simulator/`)
+- [x] **CONT-04**: Frontmatter edge cases are handled: `images:` field falls back to `featuredImage:` as the canonical image source; nested `code.copy` field is ignored (copy buttons applied globally)
 
 ### Pages
 
@@ -79,10 +79,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 | INFRA-03 | Phase 1 | Complete |
 | INFRA-04 | Phase 1 | Complete |
 | INFRA-05 | Phase 1 | Complete |
-| CONT-01 | Phase 2 | Pending |
-| CONT-02 | Phase 2 | Pending |
-| CONT-03 | Phase 2 | Pending |
-| CONT-04 | Phase 2 | Pending |
+| CONT-01 | Phase 2 | Complete |
+| CONT-02 | Phase 2 | Complete |
+| CONT-03 | Phase 2 | Complete |
+| CONT-04 | Phase 2 | Complete |
 | PAGE-01 | Phase 3 | Pending |
 | PAGE-02 | Phase 3 | Pending |
 | PAGE-03 | Phase 3 | Pending |
