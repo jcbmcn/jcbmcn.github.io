@@ -5,9 +5,49 @@
     "title": {
       "type": "string"
     },
+    "author": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string",
+      "format": "date-time"
+    },
     "draft": {
       "default": false,
       "type": "boolean"
+    },
+    "tags": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "featuredImage": {
+      "type": "string"
+    },
+    "images": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "fontawesome": {
+      "type": "boolean"
+    },
+    "code": {
+      "type": "object",
+      "properties": {
+        "copy": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "copy"
+      ]
     },
     "$schema": {
       "type": "string"
