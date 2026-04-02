@@ -83,10 +83,11 @@ Plans:
   1. Clicking a tag on the blog listing page filters the post list to only posts with that tag
   2. Typing in the search box filters posts in real time across titles, tags, and excerpts
   3. Search works correctly for terms that appear in the middle of a field (Fuse.js `ignoreLocation: true` behavior verified)
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 04-01: TBD
+- [ ] 04-01-PLAN.md — Install Fuse.js 7 + prepare PostCard.astro (data-tags, button chips, active state CSS)
+- [ ] 04-02-PLAN.md — Add search input, tag filter bar, serialized post data, and client-side filter script to posts/index.astro
 
 ### Phase 5: SEO + Polish
 **Goal**: The site is production-ready — RSS feed and sitemap exist, the domain is fully functional, and there are no rough edges left
