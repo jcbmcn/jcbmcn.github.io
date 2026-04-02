@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Page not found — Jacob McNeilly">
+  <main class="not-found">
+    <h1>Page not found</h1>
+    <p>The page you're looking for doesn't exist or has moved.</p>
+    <a href="/">← Back to homepage</a>
+  </main>
+</BaseLayout>
+
+<style>
+  .not-found {
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: 4rem 1.5rem;
+  }
+
+  h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 1.5rem;
+  }
+</style>
