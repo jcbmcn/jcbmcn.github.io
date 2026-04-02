@@ -90,16 +90,20 @@ Plans:
 - [ ] 04-02-PLAN.md — Add search input, tag filter bar, serialized post data, and client-side filter script to posts/index.astro
 
 ### Phase 5: SEO + Polish
-**Goal**: The site is production-ready — RSS feed and sitemap exist, the domain is fully functional, and there are no rough edges left
+**Goal**: The site is production-ready — RSS feed and sitemap exist, dark mode toggle works, and there are no rough edges left
 **Depends on**: Phase 4
 **Requirements**: SEO-01, SEO-02
 **Success Criteria** (what must be TRUE):
   1. `/rss.xml` returns a valid RSS feed listing all published posts
   2. `/sitemap.xml` is generated at build time and includes all published post URLs
-**Plans**: TBD
+  3. Dark mode toggle in site header switches between light and dark themes; preference persists across page loads
+  4. A 404 page exists and links back to the homepage
+**Plans**: 3 plans
 
 Plans:
-- [ ] 05-01: TBD
+- [ ] 05-01-PLAN.md — Install @astrojs/rss + create RSS endpoint; install @astrojs/sitemap integration
+- [ ] 05-02-PLAN.md — Add dark mode CSS token block to global.css; create SiteHeader.astro component
+- [ ] 05-03-PLAN.md — Wire SiteHeader + anti-flash script into BaseLayout.astro; create 404.astro page
 
 ## Progress
 
