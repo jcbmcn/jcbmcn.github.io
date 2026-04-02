@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-stopped_at: Phase 4 context gathered
-last_updated: "2026-04-02T18:35:11.425Z"
+stopped_at: Completed 04-01-PLAN.md
+last_updated: "2026-04-02T19:52:20.882Z"
 last_activity: 2026-04-02
 progress:
   total_phases: 5
   completed_phases: 3
-  total_plans: 7
-  completed_plans: 7
+  total_plans: 9
+  completed_plans: 8
   percent: 0
 ---
 
@@ -59,6 +59,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 03-core-pages-visual-design P03-01 | 8 | 2 tasks | 5 files |
 | Phase 03-core-pages-visual-design P03-02 | 5 | 2 tasks | 3 files |
 | Phase 03-core-pages-visual-design P03-03 | 4 | 1 tasks | 1 files |
+| Phase 04-search-tag-filtering P01 | 1 | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -79,6 +80,8 @@ Recent decisions affecting current work:
 - [Phase 03-core-pages-visual-design]: CSS custom properties (not Tailwind @theme) for color tokens — enables direct var() usage in component style blocks
 - [Phase 03-core-pages-visual-design]: Astro 6 Content Layer render API: render(entry) from astro:content (not legacy entry.render())
 - [Phase 03-core-pages-visual-design]: Copy-to-clipboard uses plain Astro script block — no hydration island needed for static post pages
+- [Phase 04-search-tag-filtering]: fuse.js in dependencies (not devDependencies) — needed at build time for Astro/Vite script bundling
+- [Phase 04-search-tag-filtering]: PostCard button chips wrapped in <li> (display:contents) — button not valid as direct child of <ul>
 
 ### Pending Todos
 
@@ -91,6 +94,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-02T18:35:11.419Z
-Stopped at: Phase 4 context gathered
-Resume file: .planning/phases/04-search-tag-filtering/04-CONTEXT.md
+Last session: 2026-04-02T19:52:20.880Z
+Stopped at: Completed 04-01-PLAN.md
+Resume file: None

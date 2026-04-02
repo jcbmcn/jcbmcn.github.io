@@ -31,7 +31,7 @@
 
 ### Search & Discovery
 
-- [ ] **SRCH-01**: Blog listing page supports filtering posts by tag
+- [x] **SRCH-01**: Blog listing page supports filtering posts by tag
 - [ ] **SRCH-02**: Blog listing page supports free-text search across post titles, tags, and excerpts via Fuse.js (with `ignoreLocation: true`)
 
 ### SEO
@@ -89,7 +89,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | PAGE-04 | Phase 3 | Complete |
 | PAGE-05 | Phase 3 | Complete |
 | PAGE-06 | Phase 3 | Complete |
-| SRCH-01 | Phase 4 | Pending |
+| SRCH-01 | Phase 4 | Complete |
 | SRCH-02 | Phase 4 | Pending |
 | SEO-01 | Phase 5 | Pending |
 | SEO-02 | Phase 5 | Pending |

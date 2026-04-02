@@ -86,7 +86,7 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 04-01-PLAN.md — Install Fuse.js 7 + prepare PostCard.astro (data-tags, button chips, active state CSS)
+- [x] 04-01-PLAN.md — Install Fuse.js 7 + prepare PostCard.astro (data-tags, button chips, active state CSS)
 - [ ] 04-02-PLAN.md — Add search input, tag filter bar, serialized post data, and client-side filter script to posts/index.astro
 
 ### Phase 5: SEO + Polish
@@ -111,7 +111,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | 1. Scaffold + CI/CD | 0/2 | Not started | - |
 | 2. Content Layer + Migration | 2/2 | Complete   | 2026-04-02 |
 | 3. Core Pages + Visual Design | 3/3 | Complete   | 2026-04-02 |
-| 4. Search + Tag Filtering | 0/TBD | Not started | - |
+| 4. Search + Tag Filtering | 1/2 | In Progress|  |
 | 5. SEO + Polish | 0/TBD | Not started | - |
 
 ---
