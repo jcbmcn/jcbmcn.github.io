@@ -1,0 +1,42 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@layer base {
+  :root {
+    /* Color tokens — light mode */
+    --color-bg: theme(colors.slate.50);
+    --color-surface: theme(colors.white);
+    --color-surface-alt: theme(colors.slate.100);
+    --color-border: theme(colors.slate.200);
+    --color-text-primary: theme(colors.slate.900);
+    --color-text-secondary: theme(colors.slate.500);
+    --color-text-muted: theme(colors.slate.400);
+    --color-accent: #6366F1;
+    --color-accent-hover: theme(colors.indigo.600);
+    --color-accent-subtle: theme(colors.indigo.50);
+
+    /* Typography tokens */
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  /* Dark mode token overrides — values stubbed for v2 */
+  /* [data-theme="dark"] { ... } */
+
+  html {
+    font-family: var(--font-sans);
+    background-color: var(--color-bg);
+    color: var(--color-text-primary);
+  }
+
+  body {
+    margin: 0;
+  }
+
+  a {
+    color: var(--color-accent);
+  }
+
+  a:hover {
+    color: var(--color-accent-hover);
+  }
+}
