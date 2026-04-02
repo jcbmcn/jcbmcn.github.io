@@ -24,6 +24,15 @@ const posts = await getCollection('blog', ({ data }) => data.draft !== true);
       .links { display: flex; gap: 1rem; margin-top: 1.5rem; }
       .links a { color: #0070f3; text-decoration: none; }
       .links a:hover { text-decoration: underline; }
+      .notice {
+        margin-top: 2rem;
+        padding: 0.75rem 1rem;
+        background: #fff8e1;
+        border-left: 3px solid #f0a500;
+        border-radius: 4px;
+        font-size: 0.9rem;
+        color: #555;
+      }
     </style>
   </head>
   <body>
@@ -33,6 +42,7 @@ const posts = await getCollection('blog', ({ data }) => data.draft !== true);
       <a href="https://github.com/jcbmcn">GitHub</a>
       <a href="https://www.linkedin.com/in/jacob-mcneilly-a6a516112/">LinkedIn</a>
     </nav>
+    <p class="notice">This site is currently being rebuilt. Check back soon.</p>
     <!-- Posts: {posts.length} published post(s) -->
   </body>
 </html>
