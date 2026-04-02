@@ -24,7 +24,7 @@ const allTags = [...new Set(posts.flatMap(p => p.data.tags ?? []))].sort();
 
 <BaseLayout title="Posts — Jacob McNeilly" description="All posts on SRE, Kubernetes, and software engineering.">
   <main class="page-container">
-    <script type="application/json" id="post-data" set:text={JSON.stringify(postData)} />
+    <script type="application/json" id="post-data" set:html={JSON.stringify(postData)} />
 
     <header class="listing-header">
       <a href="/" class="back-link">← Home</a>
@@ -64,7 +64,6 @@ const allTags = [...new Set(posts.flatMap(p => p.data.tags ?? []))].sort();
 
     <p class="empty-state" id="empty-state" hidden></p>
   </main>
-</BaseLayout>
 
 <script>
 import Fuse from 'fuse.js';
@@ -368,3 +367,4 @@ document.addEventListener('DOMContentLoaded', () => {
     border: 0;
   }
 </style>
+</BaseLayout>
