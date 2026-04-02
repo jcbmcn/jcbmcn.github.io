@@ -17,7 +17,7 @@ Each phase runs on a dedicated branch named `gsd/phase-0X-<slug>`. When the phas
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [ ] **Phase 1: Scaffold + CI/CD** - Astro project wired to GitHub Pages with CNAME; placeholder page live at jcbmcn.com
-- [ ] **Phase 2: Content Layer + Migration** - Zod-validated content schema and all 3 existing posts migrated with correct URLs
+- [x] **Phase 2: Content Layer + Migration** - Zod-validated content schema and all 3 existing posts migrated with correct URLs (completed 2026-04-02)
 - [ ] **Phase 3: Core Pages + Visual Design** - All page routes implemented; visual design discussed and applied (UI design checkpoint required)
 - [ ] **Phase 4: Search + Tag Filtering** - Fuse.js search and tag filter working on the blog listing page
 - [ ] **Phase 5: SEO + Polish** - RSS feed and sitemap live; site production-ready
@@ -49,10 +49,11 @@ Plans:
   2. Each post URL matches the Hugo `:filename` permalink pattern (e.g., `/2025-12-28-building-codeowners-simulator/`)
   3. Posts with `featuredImage` and posts with `images:` both resolve to the same canonical image field without errors
   4. The `code.copy` frontmatter field in existing posts does not cause build or schema validation errors
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 02-01: TBD
+- [x] 02-01-PLAN.md — Expand Zod blog schema to full field set (title, author, date, tags, featuredImage, images, subtitle, fontawesome, code.copy)
+- [x] 02-02-PLAN.md — Restore 3 posts from git history into src/content/blog/ and verify edge cases
 
 ### Phase 3: Core Pages + Visual Design
 **Goal**: All page routes are implemented and the site looks like a polished personal brand — homepage with bio and recent posts, a full post listing, and individual post pages with syntax-highlighted code
@@ -105,7 +106,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Scaffold + CI/CD | 0/2 | Not started | - |
-| 2. Content Layer + Migration | 0/TBD | Not started | - |
+| 2. Content Layer + Migration | 2/2 | Complete   | 2026-04-02 |
 | 3. Core Pages + Visual Design | 0/TBD | Not started | - |
 | 4. Search + Tag Filtering | 0/TBD | Not started | - |
 | 5. SEO + Polish | 0/TBD | Not started | - |

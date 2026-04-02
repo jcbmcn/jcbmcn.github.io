@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-stopped_at: Completed 01-scaffold-ci-cd phase (01-01 + 01-02)
-last_updated: "2026-04-01T23:10:04.739Z"
-last_activity: 2026-04-01 — Roadmap created; 5 phases defined, all 19 v1 requirements mapped
+stopped_at: "Completed 02-content-layer-migration: plans 02-01 and 02-02 both done"
+last_updated: "2026-04-02T03:28:19.609Z"
+last_activity: 2026-04-02
 progress:
   total_phases: 5
-  completed_phases: 1
-  total_plans: 2
-  completed_plans: 2
+  completed_phases: 2
+  total_plans: 4
+  completed_plans: 4
   percent: 0
 ---
 
@@ -25,10 +25,10 @@ See: .planning/PROJECT.md (updated 2026-04-01)
 
 ## Current Position
 
-Phase: 1 of 5 (Scaffold + CI/CD)
-Plan: 0 of TBD in current phase
+Phase: 3 of 5 (core pages + visual design)
+Plan: Not started
 Status: Ready to plan
-Last activity: 2026-04-01 — Roadmap created; 5 phases defined, all 19 v1 requirements mapped
+Last activity: 2026-04-02
 
 Progress: [░░░░░░░░░░] 0%
 
@@ -54,6 +54,8 @@ Progress: [░░░░░░░░░░] 0%
 *Updated after each plan completion*
 | Phase 01-scaffold-ci-cd P01-01 | 3 | 2 tasks | 16 files |
 | Phase 01-scaffold-ci-cd P01-02 | 2 | 2 tasks | 27 files |
+| Phase 02-content-layer-migration P02-01 | 5 | 1 tasks | 1 files |
+| Phase 02-content-layer-migration P02-02 | 3 | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -69,6 +71,8 @@ Recent decisions affecting current work:
 - [Phase 01-scaffold-ci-cd]: npm chosen as package manager for Astro — withastro/action@v5 auto-detects from package-lock.json
 - [Phase 01-scaffold-ci-cd]: Astro 6 Content Layer API (src/content.config.ts + glob loader) replaces legacy content collections
 - [Phase 01-scaffold-ci-cd]: .gitignore updated: /public/ removed (was excluding static assets), /dist/ added (Astro build output)
+- [Phase 02-content-layer-migration]: author and date marked optional in schema so test-draft.md (minimal frontmatter) still validates — all fields except title are optional
+- [Phase 02-content-layer-migration]: Posts restored verbatim from git history (44bc5d5^) — no frontmatter or body edits; talosctl filename/date mismatch preserved
 
 ### Pending Todos
 
@@ -81,6 +85,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-01T23:10:04.736Z
-Stopped at: Completed 01-scaffold-ci-cd phase (01-01 + 01-02)
+Last session: 2026-04-02T03:21:46.600Z
+Stopped at: Completed 02-content-layer-migration: plans 02-01 and 02-02 both done
 Resume file: None

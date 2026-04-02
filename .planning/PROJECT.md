@@ -12,13 +12,13 @@ A frictionless place for Jacob to publish technical writing: drop a Markdown fil
 
 ### Validated
 
-(None yet — ship to validate)
+- [x] Blog posts are authored as Markdown files with YAML frontmatter (title, author, date, draft, tags, featuredImage, code.copy, images, subtitle, fontawesome) — Validated in Phase 2: Content Layer + Migration
+- [x] Existing posts in content/posts/ are migrated to the new site (all 3 posts restored verbatim with correct URL slugs) — Validated in Phase 2: Content Layer + Migration
+- [x] Draft posts (draft: true) are excluded from production builds (Zod schema + getCollection filter) — Validated in Phase 2: Content Layer + Migration
 
 ### Active
 
 - [ ] Site is built with TypeScript — no backend, pure static output deployable to GitHub Pages
-- [ ] Blog posts are authored as Markdown files with YAML frontmatter (title, author, date, draft, tags, featuredImage)
-- [ ] Existing posts in content/posts/ are migrated to the new site
 - [ ] Homepage has a personal bio/intro section and a section showing recent posts
 - [ ] A dedicated blog listing page shows all posts
 - [ ] Tag filtering and free-text search (via Fuse.js or equivalent) work on the listing page
@@ -26,7 +26,7 @@ A frictionless place for Jacob to publish technical writing: drop a Markdown fil
 - [ ] Featured images are displayed on post listings and post detail pages
 - [ ] GitHub Actions CI/CD builds and deploys the static site to GitHub Pages (replacing the Hugo workflow)
 - [ ] Site is accessible at jcbmcn.com via existing Cloudflare DNS setup
-- [ ] Draft posts (draft: true) are excluded from production builds
+
 
 ### Out of Scope
 
@@ -35,6 +35,10 @@ A frictionless place for Jacob to publish technical writing: drop a Markdown fil
 - Comments system — not requested
 - Mobile app — web only
 - OAuth / user accounts — public read-only site
+
+## Current State
+
+Phase 2 complete (2026-04-02) — Content layer fully populated: Zod-validated schema with 10 frontmatter fields, all 3 real posts restored verbatim from git history, build exits 0. Ready for Phase 3: Core Pages + Visual Design.
 
 ## Context
 
@@ -80,4 +84,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-04-01 after initialization*
+*Last updated: 2026-04-02 after Phase 2 completion*
