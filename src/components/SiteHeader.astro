@@ -1,19 +1,24 @@
 ---
 ---
-<header class="site-header">
-  <a href="/" class="site-name">Jacob McNeilly</a>
-  <div class="header-controls">
-    <a href="/rss.xml" class="rss-link" aria-label="RSS feed">RSS</a>
+<header class="site-header no-rule">
+  <a href="/" class="wordmark" aria-label="Jacob McNeilly — home">jcbmcn</a>
+  <nav class="header-nav" aria-label="Site navigation">
+    <a href="/posts/" class="nav-link">Writing</a>
+    <a href="/rss.xml" class="nav-link nav-link--rss" aria-label="RSS feed" title="RSS feed">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <circle cx="6.18" cy="17.82" r="2.18"/>
+        <path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/>
+      </svg>
+      <span class="sr-only">RSS</span>
+    </a>
     <button type="button" id="theme-toggle" aria-label="Switch to dark mode">
-      <span class="icon-moon">
-        <!-- Moon SVG — visible in light mode -->
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <span class="icon-moon" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
         </svg>
       </span>
-      <span class="icon-sun" style="display:none">
-        <!-- Sun SVG — visible in dark mode -->
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <span class="icon-sun" style="display:none" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="5"/>
           <line x1="12" y1="1" x2="12" y2="3"/>
           <line x1="12" y1="21" x2="12" y2="23"/>
@@ -26,7 +31,7 @@
         </svg>
       </span>
     </button>
-  </div>
+  </nav>
 </header>
 
 <script>
@@ -38,7 +43,7 @@
     document.documentElement.setAttribute('data-theme', theme);
     if (moonIcon && sunIcon) {
       moonIcon.style.display = theme === 'light' ? '' : 'none';
-      sunIcon.style.display = theme === 'dark' ? '' : 'none';
+      sunIcon.style.display  = theme === 'dark'  ? '' : 'none';
     }
     if (btn) {
       btn.setAttribute('aria-label',
@@ -47,9 +52,8 @@
     }
   }
 
-  // Sync icon state with current theme on load
-  const currentTheme = (document.documentElement.getAttribute('data-theme') ?? 'light') as 'light' | 'dark';
-  applyTheme(currentTheme);
+  const current = (document.documentElement.getAttribute('data-theme') ?? 'light') as 'light' | 'dark';
+  applyTheme(current);
 
   btn?.addEventListener('click', () => {
     const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
@@ -63,60 +67,78 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 56px;
-    padding: 0 1.5rem;
-    background-color: var(--color-surface);
-    border-bottom: 1px solid var(--color-border);
+    height: 52px;
+    padding: 0 var(--gutter);
+    background-color: var(--color-bg);
+    border-bottom: 1px solid var(--color-border-soft);
+    /* Amber accent line at very top — distinctive mark */
+    border-top: 3px solid var(--color-accent);
     position: sticky;
     top: 0;
-    z-index: 10;
+    z-index: 20;
   }
 
-  .site-name {
-    font-size: 1rem;
+  /* Wordmark: Fraunces, lowercase, amber accent on hover */
+  .wordmark {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
     font-weight: 700;
-    color: var(--color-text-primary);
+    font-style: italic;
+    letter-spacing: -0.02em;
+    color: var(--color-ink);
     text-decoration: none;
+    transition: color 0.12s ease;
   }
 
-  .site-name:hover {
-    color: var(--color-accent);
+  .wordmark:hover {
+    color: var(--color-accent-text);
   }
 
-  .header-controls {
+  .header-nav {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.25rem;
   }
 
-  .rss-link {
-    font-size: 0.875rem;
-    font-weight: 400;
-    color: var(--color-accent);
+  .nav-link {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-ink-mid);
     text-decoration: none;
     padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+    transition: color 0.12s ease;
+    letter-spacing: 0.01em;
   }
 
-  .rss-link:hover {
-    color: var(--color-accent-hover);
+  .nav-link:hover {
+    color: var(--color-ink);
+  }
+
+  .nav-link--rss {
+    display: flex;
+    align-items: center;
+    padding: 0.375rem 0.5rem;
   }
 
   #theme-toggle {
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
     background: transparent;
     border: none;
-    border-radius: 0.5rem;
+    border-radius: 3px;
     cursor: pointer;
-    color: var(--color-text-primary);
-    padding: 0.5rem;
+    color: var(--color-ink-mid);
+    transition: color 0.12s ease, background-color 0.12s ease;
   }
 
   #theme-toggle:hover {
-    background-color: var(--color-surface-alt);
+    color: var(--color-ink);
+    background-color: var(--color-accent-tint);
   }
 
   #theme-toggle:focus-visible {
