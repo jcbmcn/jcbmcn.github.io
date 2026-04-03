@@ -22,46 +22,69 @@ const postData = posts.map(entry => ({
 const allTags = [...new Set(posts.flatMap(p => p.data.tags ?? []))].sort();
 ---
 
-<BaseLayout title="Posts — Jacob McNeilly" description="All posts on SRE, Kubernetes, and software engineering.">
-  <main class="page-container">
+<BaseLayout
+  title="Writing — Jacob McNeilly"
+  description="All posts on SRE, Kubernetes, and software engineering."
+>
+  <main class="posts-page">
+    <!-- Hidden data blob for client-side search -->
     <script type="application/json" id="post-data" set:html={JSON.stringify(postData)} />
 
-    <header class="listing-header">
-      <a href="/" class="back-link">← Home</a>
-      <h1 class="listing-title">Posts</h1>
-      <p class="listing-count">{posts.length} post{posts.length !== 1 ? 's' : ''}</p>
+    <!-- Page header -->
+    <header class="posts-header">
+      <h1 class="posts-title">Writing</h1>
+      <p class="posts-count" id="posts-count">
+        {posts.length} post{posts.length !== 1 ? 's' : ''}
+      </p>
     </header>
 
-    <!-- Search + Tag filter controls -->
-    <div class="listing-controls">
-      <input
-        type="search"
-        id="search-input"
-        class="search-input"
-        placeholder="Search posts…"
-        aria-label="Search posts"
-        autocomplete="off"
-      />
-      <div class="filter-bar" role="group" aria-label="Filter by tag">
-        {allTags.map(tag => (
-          <button type="button" class="filter-chip" data-tag={tag} aria-pressed="false">
-            {tag}
-          </button>
-        ))}
-        <button type="button" class="clear-filters" id="clear-filters" aria-label="Clear all filters" hidden>
-          × Clear filters
-        </button>
+    <!-- Search + tag controls -->
+    <div class="posts-controls">
+      <div class="search-wrap">
+        <svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"/>
+          <path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input
+          type="search"
+          id="search-input"
+          class="search-input"
+          placeholder="Search posts"
+          aria-label="Search posts"
+          autocomplete="off"
+        />
       </div>
+      {allTags.length > 0 && (
+        <div class="tag-filter" role="group" aria-label="Filter by tag">
+          {allTags.map(tag => (
+            <button type="button" class="filter-chip" data-tag={tag} aria-pressed="false">
+              {tag}
+            </button>
+          ))}
+          <button
+            type="button"
+            class="clear-btn"
+            id="clear-filters"
+            aria-label="Clear all filters"
+            hidden
+          >
+            × clear
+          </button>
+        </div>
+      )}
     </div>
-    <!-- Aria live region for screen readers -->
+
+    <!-- Aria live region -->
     <div aria-live="polite" aria-atomic="true" class="sr-only" id="filter-status"></div>
 
-    <div class="post-list">
+    <!-- Post list -->
+    <div class="post-list" id="post-list">
       {posts.map((entry) => (
-        <PostCard entry={entry} />
+        <PostCard entry={entry} showTagButtons={true} />
       ))}
     </div>
 
+    <!-- Empty state -->
     <p class="empty-state" id="empty-state" hidden></p>
   </main>
 
@@ -81,55 +104,58 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // --- DOM refs ---
-  const searchInput = document.getElementById('search-input') as HTMLInputElement | null;
-  const clearBtn = document.getElementById('clear-filters') as HTMLButtonElement | null;
-  const emptyState = document.getElementById('empty-state') as HTMLParagraphElement | null;
+  const searchInput  = document.getElementById('search-input') as HTMLInputElement | null;
+  const clearBtn     = document.getElementById('clear-filters') as HTMLButtonElement | null;
+  const emptyState   = document.getElementById('empty-state') as HTMLParagraphElement | null;
   const filterStatus = document.getElementById('filter-status') as HTMLDivElement | null;
-  const countEl = document.querySelector('.listing-count') as HTMLParagraphElement | null;
-  const postCards = Array.from(document.querySelectorAll<HTMLElement>('[data-tags]'));
-  const filterChips = Array.from(document.querySelectorAll<HTMLButtonElement>('.filter-chip'));
+  const countEl      = document.getElementById('posts-count') as HTMLParagraphElement | null;
+  const postEntries  = Array.from(document.querySelectorAll<HTMLElement>('[data-tags]'));
+  const filterChips  = Array.from(document.querySelectorAll<HTMLButtonElement>('.filter-chip'));
 
   // --- State ---
-  let activeTags = new Set<string>();
+  let activeTags  = new Set<string>();
   let searchQuery = '';
 
-  // --- Core filter function ---
+  // --- Core filter ---
   function applyFilters() {
-    // 1. Determine IDs matching full-text search
     let searchMatchIds: Set<string> | null = null;
     if (searchQuery.trim() !== '') {
       const results = fuse.search(searchQuery.trim());
       searchMatchIds = new Set(results.map(r => r.item.id));
     }
 
-    // 2. Show/hide cards
     let visibleCount = 0;
-    postCards.forEach(card => {
-      const cardId = card.querySelector('a')?.getAttribute('href')?.replace(/^\/posts\//, '').replace(/\/$/, '') ?? '';
-      const cardTagsRaw = card.getAttribute('data-tags') ?? '';
-      const cardTags = cardTagsRaw ? cardTagsRaw.split(',') : [];
+    postEntries.forEach(entry => {
+      const link   = entry.querySelector('a');
+      const cardId = link?.getAttribute('href')?.replace(/^\/posts\//, '').replace(/\/$/, '') ?? '';
+      const cardTagsRaw = entry.getAttribute('data-tags') ?? '';
+      const cardTags    = cardTagsRaw ? cardTagsRaw.split(',') : [];
 
-      // Check search match
       const matchesSearch = searchMatchIds === null || searchMatchIds.has(cardId);
+      const matchesTags   = activeTags.size === 0 || [...activeTags].every(t => cardTags.includes(t));
+      const visible       = matchesSearch && matchesTags;
 
-      // Check tag match (AND logic — must match ALL active tags)
-      const matchesTags = activeTags.size === 0 || [...activeTags].every(t => cardTags.includes(t));
+      entry.style.display = visible ? '' : 'none';
 
-      const visible = matchesSearch && matchesTags;
-      card.style.display = visible ? '' : 'none';
+      // Also hide the adjacent tag-button list if present (next sibling)
+      const tagButtons = entry.nextElementSibling;
+      if (tagButtons?.classList.contains('post-entry__tag-buttons')) {
+        (tagButtons as HTMLElement).style.display = visible ? '' : 'none';
+      }
+
       if (visible) visibleCount++;
     });
 
-    // 3. Update post count
+    // Update count
     if (countEl) {
       countEl.textContent = `${visibleCount} post${visibleCount !== 1 ? 's' : ''}`;
     }
 
-    // 4. Show/hide empty state with correct copy per UI-SPEC copywriting contract
+    // Empty state
     if (emptyState) {
       if (visibleCount === 0) {
         const hasSearch = searchQuery.trim() !== '';
-        const hasTags = activeTags.size > 0;
+        const hasTags   = activeTags.size > 0;
         if (hasSearch && hasTags) {
           emptyState.textContent = `No posts match "${searchQuery.trim()}" with the selected tags.`;
         } else if (hasSearch) {
@@ -145,27 +171,27 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // 5. Update aria-live region
+    // Aria live
     if (filterStatus) {
       filterStatus.textContent = `${visibleCount} post${visibleCount !== 1 ? 's' : ''} shown`;
     }
 
-    // 6. Show/hide clear button
+    // Clear button visibility
     const hasActiveFilters = activeTags.size > 0 || searchQuery.trim() !== '';
     if (clearBtn) clearBtn.hidden = !hasActiveFilters;
   }
 
-  // --- Sync PostCard tag chip active states ---
-  function syncPostCardChips() {
-    document.querySelectorAll<HTMLButtonElement>('.post-card__tag[data-tag]').forEach(btn => {
+  // --- Sync all PostCard tag-button states ---
+  function syncTagBtns() {
+    document.querySelectorAll<HTMLButtonElement>('.tag-btn[data-tag]').forEach(btn => {
       const tag = btn.getAttribute('data-tag') ?? '';
       const isActive = activeTags.has(tag);
       btn.setAttribute('aria-pressed', String(isActive));
-      btn.classList.toggle('post-card__tag--active', isActive);
+      btn.classList.toggle('tag-btn--active', isActive);
     });
   }
 
-  // --- Sync filter bar chip active states ---
+  // --- Sync filter bar chip states ---
   function syncFilterChips() {
     filterChips.forEach(chip => {
       const tag = chip.getAttribute('data-tag') ?? '';
@@ -175,7 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- Toggle tag helper ---
+  // --- Toggle tag ---
   function toggleTag(tag: string) {
     if (activeTags.has(tag)) {
       activeTags.delete(tag);
@@ -183,17 +209,16 @@ document.addEventListener('DOMContentLoaded', () => {
       activeTags.add(tag);
     }
     syncFilterChips();
-    syncPostCardChips();
+    syncTagBtns();
     applyFilters();
   }
 
-  // --- Event: search input ---
+  // --- Events ---
   searchInput?.addEventListener('input', (e) => {
     searchQuery = (e.target as HTMLInputElement).value;
     applyFilters();
   });
 
-  // --- Event: filter bar chip clicks ---
   filterChips.forEach(chip => {
     chip.addEventListener('click', () => {
       const tag = chip.getAttribute('data-tag') ?? '';
@@ -201,170 +226,186 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // --- Event: PostCard tag chip clicks (delegated) ---
+  // Delegated click for PostCard tag buttons
   document.addEventListener('click', (e) => {
-    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('.post-card__tag[data-tag]');
+    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('.tag-btn[data-tag]');
     if (btn) {
       const tag = btn.getAttribute('data-tag') ?? '';
       if (tag) toggleTag(tag);
     }
   });
 
-  // --- Event: Clear filters ---
   clearBtn?.addEventListener('click', () => {
     activeTags.clear();
     searchQuery = '';
     if (searchInput) searchInput.value = '';
     syncFilterChips();
-    syncPostCardChips();
+    syncTagBtns();
     applyFilters();
   });
 });
 </script>
 
 <style>
-  .page-container {
-    max-width: 48rem;
+  /* ============================================================
+     PAGE LAYOUT
+     ============================================================ */
+  .posts-page {
+    max-width: var(--container-wide);
     margin: 0 auto;
-    padding: 2rem 1.5rem 4rem;
+    padding: 0 var(--gutter) clamp(4rem, 10vw, 8rem);
   }
 
-  .listing-header {
-    padding-bottom: 1.5rem;
+  /* ============================================================
+     HEADER
+     ============================================================ */
+  .posts-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: clamp(2rem, 5vw, 3.5rem) 0 var(--space-5);
     border-bottom: 1px solid var(--color-border);
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--space-4);
   }
 
-  .back-link {
-    display: inline-block;
-    font-size: 0.875rem;
-    color: var(--color-text-secondary);
-    text-decoration: none;
-    margin-bottom: 0.75rem;
-  }
-
-  .back-link:hover {
-    color: var(--color-accent);
-  }
-
-  .listing-title {
-    margin: 0 0 0.25rem;
-    font-size: 1.75rem;
+  .posts-title {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
     font-weight: 700;
-    color: var(--color-text-primary);
-  }
-
-  .listing-count {
+    font-style: italic;
+    letter-spacing: -0.02em;
+    color: var(--color-ink);
     margin: 0;
-    font-size: 0.875rem;
-    color: var(--color-text-secondary);
   }
 
-  .post-list {
+  .posts-count {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-ink-light);
+    margin: 0;
+    letter-spacing: 0.02em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ============================================================
+     SEARCH + FILTER CONTROLS
+     ============================================================ */
+  .posts-controls {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: var(--space-3);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--color-border-soft);
+    margin-bottom: var(--space-2);
   }
 
-  /* Controls block */
-  .listing-controls {
+  /* Search input with icon */
+  .search-wrap {
+    position: relative;
     display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid var(--color-border);
-    margin-bottom: 1.5rem;
+    align-items: center;
   }
 
-  /* Search input */
+  .search-icon {
+    position: absolute;
+    left: 0.75rem;
+    color: var(--color-ink-faint);
+    pointer-events: none;
+    flex-shrink: 0;
+  }
+
   .search-input {
     width: 100%;
-    padding: 0.5rem 0.75rem;
-    font-size: 0.875rem;
-    font-family: var(--font-sans, inherit);
-    color: var(--color-text-primary);
+    padding: 0.5rem 0.75rem 0.5rem 2.25rem;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--color-ink);
     background: var(--color-surface);
     border: 1px solid var(--color-border);
-    border-radius: 0.5rem;
+    border-radius: 3px;
     outline: none;
     box-sizing: border-box;
+    transition: border-color 0.12s ease;
   }
 
   .search-input::placeholder {
-    color: var(--color-text-muted);
+    color: var(--color-ink-faint);
   }
 
   .search-input:focus {
-    border: 2px solid var(--color-accent);
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 2px oklch(66% 0.160 62 / 0.15);
   }
 
-  /* Tag filter bar */
-  .filter-bar {
+  /* Tag filter row */
+  .tag-filter {
     display: flex;
     flex-wrap: wrap;
     gap: 0.375rem;
     align-items: center;
   }
 
-  /* Filter chips (mirror .post-card__tag exactly) */
   .filter-chip {
-    font-size: 0.75rem;
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
     font-weight: 500;
-    color: var(--color-accent);
-    background: var(--color-accent-subtle);
-    padding: 0.125rem 0.5rem;
-    border-radius: 9999px;
-    border: none;
+    letter-spacing: 0.03em;
+    color: var(--color-ink-mid);
+    background: transparent;
+    border: 1px solid var(--color-border);
+    padding: 0.2rem 0.625rem;
+    border-radius: 2px;
     cursor: pointer;
-    font-family: inherit;
-    line-height: 1;
+    transition: border-color 0.1s ease, background-color 0.1s ease, color 0.1s ease;
+    line-height: 1.6;
   }
 
   .filter-chip:hover {
-    background: var(--color-accent);
-    color: white;
+    border-color: var(--color-accent);
+    color: var(--color-accent-text);
   }
 
-  .filter-chip--active {
+  .filter-chip--active,
+  .filter-chip[aria-pressed="true"] {
     background: var(--color-accent);
-    color: white;
+    border-color: var(--color-accent);
+    color: oklch(99% 0.004 75);
   }
 
-  /* Clear filters button */
-  .clear-filters {
-    font-size: 0.875rem;
-    color: var(--color-accent);
+  .clear-btn {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    color: var(--color-ink-light);
     background: none;
     border: none;
     cursor: pointer;
-    font-family: inherit;
-    padding: 0 0.25rem;
-    text-decoration: none;
+    padding: 0.2rem 0.25rem;
+    transition: color 0.1s ease;
   }
 
-  .clear-filters:hover {
-    text-decoration: underline;
+  .clear-btn:hover {
+    color: var(--color-ink);
   }
 
-  /* Empty state */
+  /* ============================================================
+     POST LIST
+     ============================================================ */
+  .post-list {
+    /* PostCard entries handle their own borders */
+  }
+
+  /* ============================================================
+     EMPTY STATE
+     ============================================================ */
   .empty-state {
-    font-size: 0.875rem;
-    color: var(--color-text-secondary);
-    padding: 1.5rem 0;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--color-ink-light);
+    padding: var(--space-6) 0;
     margin: 0;
-  }
-
-  /* Screen reader only */
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
   }
 </style>
 </BaseLayout>

@@ -13,7 +13,13 @@ export default defineConfig({
 
   markdown: {
     shikiConfig: {
-      theme: 'github-dark',
+      // Dual themes: Shiki emits CSS vars instead of inline colors.
+      // We control the active theme via [data-theme] on <html>.
+      themes: {
+        light: 'github-light',
+        dark: 'github-dark',
+      },
+      defaultColor: false,
       wrap: false,
     },
   },
