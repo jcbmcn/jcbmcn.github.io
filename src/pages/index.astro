@@ -10,81 +10,47 @@ const recentPosts = allPosts
     const bDate = b.data.date?.getTime() ?? 0;
     return bDate - aDate;
   })
-  .slice(0, 4);
+  .slice(0, 6); // Load 6 for a nice 3x2 grid
 ---
 
-<BaseLayout
-  title="Jacob McNeilly"
-  description="SRE and software engineer writing about Kubernetes, infrastructure, and building things that work."
->
-  <main class="home">
-
-    <section class="hero">
-      <div class="hero__inner">
-
-        <!-- Avatar -->
-        <img
-          src="/images/avatar.png"
-          alt="Jacob McNeilly"
-          width="120"
-          height="120"
-          class="hero__avatar"
-        />
-
-        <!-- Name + bio -->
-        <div class="hero__content">
-          <h1 class="hero__name">Jacob McNeilly</h1>
-          <p class="hero__role">SRE · Kubernetes · Infrastructure</p>
-          <p class="hero__bio">
-            Software engineer focused on reliability engineering, Kubernetes,
-            and the messy reality of running distributed systems in production.
-            I write about tools I've built, problems I've debugged, and ideas
-            I haven't figured out yet.
-          </p>
-
-          <!-- Social icon links -->
-          <nav class="hero__social" aria-label="Social links">
-            <a
-              href="https://github.com/jcbmcn"
-              class="social-link"
-              rel="noopener noreferrer"
-              target="_blank"
-              aria-label="GitHub"
-              title="GitHub"
-            >
-              <!-- GitHub mark -->
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M12 2C6.477 2 2 6.484 2 12.021c0 4.428 2.865 8.184 6.839 9.504.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.071 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.026 2.747-1.026.546 1.378.202 2.397.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.2 22 16.447 22 12.021 22 6.484 17.522 2 12 2z"/>
-              </svg>
-            </a>
-            <a
-              href="https://www.linkedin.com/in/jacob-mcneilly-a6a516112/"
-              class="social-link"
-              rel="noopener noreferrer"
-              target="_blank"
-              aria-label="LinkedIn"
-              title="LinkedIn"
-            >
-              <!-- LinkedIn mark -->
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-              </svg>
-            </a>
-          </nav>
+<BaseLayout title="Node: jcbmcn" description="SRE and software engineer writing about Kubernetes, infrastructure, and building things that work.">
+  <main class="dashboard">
+    
+    <div class="row">
+      <section class="panel system-info">
+        <div class="panel-header">System Information</div>
+        <div class="sys-content">
+          <img src="/images/avatar.png" alt="Jacob McNeilly" class="sys-avatar" width="120" height="120" />
+          <div class="sys-details">
+            <h1 class="sys-title">Jacob McNeilly</h1>
+            <ul class="sys-metrics">
+              <li><span class="m-key">role</span><span class="m-val">SRE · Kubernetes</span></li>
+              <li><span class="m-key">status</span><span class="m-val success">Healthy</span></li>
+              <li><span class="m-key">location</span><span class="m-val">Earth-1</span></li>
+            </ul>
+            <p class="sys-bio">Software engineer focused on reliability engineering, Kubernetes, and the messy reality of running distributed systems in production.</p>
+          </div>
         </div>
+      </section>
 
+      <section class="panel sys-links">
+        <div class="panel-header">Endpoints</div>
+        <div class="link-grid">
+           <a href="/posts/" class="endpoint">/var/log/writing</a>
+           <a href="https://github.com/jcbmcn" target="_blank" class="endpoint">github.com/jcbmcn</a>
+           <a href="https://www.linkedin.com/in/jacob-mcneilly-a6a516112/" target="_blank" class="endpoint">linkedin.com/in/jacob</a>
+        </div>
+      </section>
+    </div>
+
+    <section class="panel widget-recent">
+      <div class="panel-header split">
+        <span>Recent Emits</span>
+        <a href="/posts/" class="view-all">Query All →</a>
       </div>
-    </section>
-
-    <!-- Recent writing -->
-    <section class="writing">
-      <header class="writing__header">
-        <h2 class="writing__label">Recent writing</h2>
-        <a href="/posts/" class="writing__all">All posts →</a>
-      </header>
-      <div class="writing__list">
-        {recentPosts.map((entry, i) => (
-          <PostCard entry={entry} featured={i === 0} />
+      <div class="posts-grid">
+        {recentPosts.map((entry) => (
+          <PostCard entry={entry} />
         ))}
       </div>
     </section>
@@ -93,129 +59,106 @@ const recentPosts = allPosts
 </BaseLayout>
 
 <style>
-  .home {
-    max-width: var(--container-wide);
-    margin: 0 auto;
-    padding: 0 var(--gutter) clamp(4rem, 10vw, 8rem);
-  }
-
-  /* ---- Hero ---- */
-  .hero {
-    padding: clamp(2.5rem, 6vw, 4rem) 0 clamp(2rem, 5vw, 3rem);
-    border-bottom: 1px solid var(--color-border);
-    margin-bottom: clamp(2rem, 5vw, 3rem);
-  }
-
-  .hero__inner {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--space-5);
-    max-width: 52rem;
-  }
-
-  .hero__avatar {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    flex-shrink: 0;
-    object-fit: cover;
-  }
-
-  .hero__content {
+  .dashboard { 
+    max-width: var(--container-max); 
+    margin: 0 auto; 
+    padding: var(--space-4) var(--gutter); 
     display: flex;
     flex-direction: column;
-    gap: var(--space-2);
+    gap: var(--space-4);
   }
 
-  .hero__name {
-    font-family: var(--font-display);
-    font-size: clamp(1.6rem, 4vw, 2.2rem);
-    font-weight: 700;
-    font-style: italic;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-    color: var(--color-ink);
-    margin: 0;
+  .row {
+    display: grid;
+    gap: var(--space-4);
   }
 
-  .hero__role {
-    font-family: var(--font-body);
-    font-size: var(--text-sm);
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    color: var(--color-ink-light);
-    margin: 0;
+  @media (min-width: 768px) {
+    .row { grid-template-columns: 2fr 1fr; }
   }
 
-  .hero__bio {
-    font-family: var(--font-body);
-    font-size: var(--text-base);
-    line-height: 1.7;
-    color: var(--color-ink-mid);
-    margin: 0;
-    max-width: 52ch;
+  .panel {
+    background: var(--color-panel);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    padding: var(--space-4);
   }
 
-  /* ---- Social icons ---- */
-  .hero__social {
-    display: flex;
-    gap: var(--space-2);
-    margin-top: var(--space-1);
-  }
-
-  .social-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    border-radius: 6px;
-    color: var(--color-ink-mid);
-    text-decoration: none;
-    transition: color 0.12s ease, background-color 0.12s ease;
-  }
-
-  .social-link:hover {
-    color: var(--color-ink);
-    background-color: var(--color-bg-alt);
-  }
-
-  /* ---- Recent writing ---- */
-  .writing__header {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    margin-bottom: var(--space-3);
-  }
-
-  .writing__label {
-    font-family: var(--font-body);
+  .panel-header {
+    font-family: var(--font-mono);
     font-size: var(--text-xs);
-    font-weight: 600;
-    letter-spacing: 0.10em;
     text-transform: uppercase;
+    letter-spacing: 0.05em;
     color: var(--color-ink-light);
-    margin: 0;
+    margin-bottom: var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: var(--space-2);
+  }
+  
+  .panel-header.split {
+    display: flex; justify-content: space-between; align-items: baseline;
   }
 
-  .writing__all {
-    font-family: var(--font-body);
+  .sys-content {
+    display: flex;
+    gap: var(--space-5);
+    align-items: flex-start;
+  }
+
+  .sys-avatar {
+    width: 120px; height: 120px;
+    border-radius: 4px;
+    border: 1px solid var(--color-border);
+    flex-shrink: 0;
+  }
+
+  .sys-title {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-2);
+  }
+
+  .sys-metrics {
+    list-style: none; padding: 0; margin: 0 0 var(--space-3) 0;
+    font-family: var(--font-mono); font-size: var(--text-xs);
+    display: flex; flex-direction: column; gap: 4px;
+  }
+
+  .m-key { color: var(--color-ink-light); display: inline-block; width: 70px; }
+  .m-val { color: var(--color-ink); }
+  .m-val.success { color: var(--color-success); }
+
+  .sys-bio {
     font-size: var(--text-sm);
-    font-weight: 500;
     color: var(--color-ink-mid);
-    text-decoration: none;
-    transition: color 0.12s ease;
+    max-width: 60ch;
   }
 
-  .writing__all:hover {
-    color: var(--color-accent-text);
+  .link-grid {
+    display: flex; flex-direction: column; gap: var(--space-2);
   }
 
-  /* ---- Mobile: stack avatar above content ---- */
-  @media (max-width: 480px) {
-    .hero__inner {
-      flex-direction: column;
-      gap: var(--space-4);
-    }
+  .endpoint {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    padding: var(--space-2);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 3px;
+    color: var(--color-accent);
   }
+
+  .endpoint:hover {
+    border-color: var(--color-accent);
+    background: var(--color-accent-tint);
+  }
+
+  .view-all {
+    color: var(--color-accent); text-decoration: none; font-size: 10px;
+  }
+
+  .posts-grid { 
+    display: grid; grid-template-columns: 1fr; gap: var(--space-3); 
+  }
+  @media (min-width: 768px) { .posts-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .posts-grid { grid-template-columns: repeat(3, 1fr); } }
 </style>
